@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>MyPropertyController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>BrokerCard</members>
+        <members>SimilarProperties</members>
+        <members>SimilarProperty</members>
+        <members>recordUpdated</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <version>43.0</version>
+</Package>
