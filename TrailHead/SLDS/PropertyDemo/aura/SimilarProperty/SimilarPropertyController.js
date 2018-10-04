@@ -6,19 +6,20 @@
  *				  	====	========		=========		=============	
  *				   	1		04/10/18		Ravi Raj		Added [navToRecord] method to navigate to similar property
  *				   	2		04/10/18		Ravi Raj		Added [handleSuccess] & [handleCancel] methods
+ *				   	3		04/10/18		Ravi Raj		Added Lightning Data Service and Communicate Between Components 
  **/ 
 ({
     navToRecord : function (component, event, helper) 
     {
         var navEvt = $A.get("e.force:navigateToSObject");
-        navEvt.setParams({"recordId": component.get("v.property.Id")});
+        navEvt.setParams({
+                            "recordId": component.get("v.property.Id")
+                        });
         navEvt.fire();
     },
     editRecord : function(component, event, helper) 
     {
-        var editRecordEvent = $A.get("e.force:editRecord");
-        editRecordEvent.setParams({"recordId": component.get("v.property.Id")});
-        editRecordEvent.fire();
+        helper.showHide(component);
     },
     handleSuccess : function(component, event, helper) 
     {
@@ -29,6 +30,8 @@
                                 "type": "success"
                             });
         toastEvent.fire();
+        var recUpdate = $A.get("e.c:recordUpdated");
+        recUpdate.fire();
         helper.showHide(component);
     },
     handleCancel : function(component, event, helper) 
@@ -36,5 +39,4 @@
         helper.showHide(component);
         event.preventDefault();
     }
-
 })

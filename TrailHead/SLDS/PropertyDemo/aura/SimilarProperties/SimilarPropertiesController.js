@@ -1,15 +1,31 @@
+/*
+ *	DESCRIP		:	Controller class
+ *  AUTHOR		: 	Ravi Raj [RR]
+ *	DATE		: 	04/10/18
+ * 	HISTORY		: 	ID 	 	  DATE			 AUTHOR			 DESCRIPTION
+ *				  	====	========		=========		=============	
+ *				   	1		04/10/18		Ravi Raj		Added [navToRecord] method to navigate to similar property
+ *				   	2		04/10/18		Ravi Raj		Added Lightning Data Service and Communicate Between Components
+ **/ 
 ({
     doInit : function(component, event, helper) 
     {
-        var action = component.get("c.findProperties");
+        var spinner = component.find("spinner");
+        $A.util.removeClass(spinner, "slds-hide");
+        var action = component.get("c.getSimilarProperties");
         action.setParams({
-            				 recordId: component.get("v.recordId")
-                          	,priceRange: "100000"
-        				});
+                            recordId: component.get("v.recordId"),
+                            beds: component.get("v.property.fields.Beds__c.value"),
+                            price: component.get("v.property.fields.Price__c.value"),
+                            searchCriteria: component.get("v.searchCriteria"),
+                            priceRange: parseInt(component.get("v.priceRange"), 10)
+                        });
         action.setCallback(this, function(response)
-                           			{
+                                   {
                                         var similarProperties = response.getReturnValue();
                                         component.set("v.similarProperties", similarProperties);
+                                        console.log("f: ", component.get("v.similarProperties"));
+                                        $A.util.addClass(spinner, "slds-hide");
                                     });
         $A.enqueueAction(action);
     }

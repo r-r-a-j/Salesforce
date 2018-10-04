@@ -7,10 +7,11 @@
  *				   	1		04/10/18		Ravi Raj		Initial
  *					2		04/10/18		Ravi Raj		Added a button to edit properties
  *					3		04/10/18		Ravi Raj		Added component to edit ion situ
+ *				   	4		04/10/18		Ravi Raj		Added Lightning Data Service and Communicate Between Components
  -->
 <aura:component>
     <aura:attribute name="property" type="Property__c"/>
-    
+    <aura:registerEvent name="recordUpdated" type="c:recordUpdated"/>
     <lightning:recordViewForm aura:id="viewForm" recordId="{!v.property.Id}" objectApiName="Property__c">
         <div class="slds-media">
             <div class="slds-media__figure">
