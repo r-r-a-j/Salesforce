@@ -1,0 +1,50 @@
+<!--
+ *	DESCRIP		:	Lightning Data Services to Display a record
+ *  AUTHOR		: 	Ravi Raj [RR]
+ *	DATE		: 	08/10/18
+ * 	HISTORY		: 	ID 	 	  DATE			 AUTHOR			 DESCRIPTION
+ *				  	====	========		=========		=============	
+ *				   	1		08/10/18		Ravi Raj		Initial
+ -->
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId"> <!--inherit recordId attribute-->
+    <aura:attribute name="record" type="Object" description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
+
+    <!--    The first thing you do to make a record available for your UI components is to load it. 
+			Load the record by including [force:recordData] in your component while specifying the:
+			   [recordId]
+    		 & [mode] 				// "EDIT" or "VIEW"
+			 & [
+     				[layoutType] 	//"FULL" or "COMPACT"
+				OR 	[fields]
+			   ]
+	-->    
+    <force:recordData aura:id="accountRec"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields ="{!v.accountRecord}"
+                      mode="VIEW"/>	
+    
+    <!-- Display a lightning card with details about the record -->
+    <div class="Record Details"> 
+        <lightning:card iconName="standard:account" title="{!v.accountRecord.Name}" >
+            <div class="slds-p-horizontal--small">
+                <label class="slds-form-element__label">Industry: </label>
+                <lightning:formattedText title="Industry" value="{!v.accountRecord.Industry}"/>
+                <label class="slds-form-element__label">Description: </label>
+                <lightning:formattedText title="Description" value="{!v.accountRecord.Description}" />
+                <label class="slds-form-element__label">Phone: </label>
+                <lightning:formattedPhone title="Phone" value="{!v.accountRecord.Phone}"/>
+            </div>
+        </lightning:card>
+    </div>
+    
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>

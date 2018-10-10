@@ -1,0 +1,33 @@
+<!--
+ *	DESCRIP		:	Lightning Data Services to Delete a record
+ *  AUTHOR		: 	Ravi Raj [RR]
+ *	DATE		: 	08/10/18
+ * 	HISTORY		: 	ID 	 	  DATE			 AUTHOR			 DESCRIPTION
+ *				  	====	========		=========		=============	
+ *				   	1		08/10/18		Ravi Raj		Initial
+ -->
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId">
+    <aura:attribute name="recordError" type="String" access="private"/>
+    
+    <!-- To delete a record, specify the [recordI]d with the fields attribute set to “Id” at a minimum.-->
+    <force:recordData aura:id="recordHandler"
+                      recordId="{!v.recordId}"
+                      fields="Id"
+                      targetError="{!v.recordError}"
+                      />
+    
+    <!-- Display the delete record form -->
+    <div class="Delete Record">
+        <lightning:card iconName="action:delete" title="Delete Record">
+            <div class="slds-p-horizontal--small">
+                <lightning:button label="Delete Record" variant="destructive" onclick="{!c.handleDeleteRecord}"/>
+            </div>
+        </lightning:card>
+    </div>
+    
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>
