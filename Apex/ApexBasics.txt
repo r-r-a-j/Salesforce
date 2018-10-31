@@ -1,0 +1,315 @@
+public class ApexBasics 
+{
+    /********************************
+     *****	COLLECTIONS - LISTS	*****
+     ********************************/
+    
+    /**
+     * A list is an ordered collection of elements that are distinguished by their indices. 
+     * List elements can be of any data type (primitive types, collections, sObjects...etc)
+     * 
+     * List declaration. Remeber - Lists = Array!
+    **/
+    List<String> lstList1 = new List<String>();
+    
+    //...or....
+    String[] lstList2 = new List<String>();
+    
+    /* 
+     * Generally, it’s easier to create a list rather than an array because lists don’t 
+     * require you to determine ahead of time how many elements you need to allocate.
+    **/
+    
+    /**
+     * Adding elements to List
+    **/
+    List<String> lstList3 = new List<String> { 'red', 'green', 'blue' };
+        
+    //...or after it has been created
+    List<String> lstList4 = new List<String>();
+    lstList4.add('orange');
+    lstList4.add('purple');
+    
+    /**
+     * Misc methods
+    **/
+    Integer intSize = lstList4.size();
+    
+    //assigns "purple" to position 1
+    lstList4.set(1, "purple");
+    
+    lstList4.clear(); 
+    
+    
+    /**
+     * "Geting" elements
+    **/
+    String color1 = lstList3.get(0);
+    
+    //...or....
+    String color2 = lstList3[0];
+
+    /********************************
+     *****	COLLECTIONS - SETS	*****
+     ********************************/   
+
+    /**
+     * A Set is an unordered collection of elements that do not contain any duplicates. 
+     * Set elements can be of any data type (primitive types, collections, sObjects...etc)
+     * Apex internally uses a hash structure for all sets.
+     * A set is an unordered collection—you can’t access a set element at a specific index. You can only iterate over set elements.
+     * Sets can contain up to only four levels of nested collections
+     * 
+     * https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_methods_system_set.htm#apex_methods_system_set
+    **/    
+   	// Define a new set (same as List)
+    Set<Integer> mySet = new Set<Integer>();
+    
+    // Add two elements to the set (same as List)
+    mySet.add(1);
+    mySet.add(3);
+    
+    // Assert that the set contains the integer value we added
+    System.assert(mySet.contains(1));
+    
+    // Remove the integer value from the set
+    mySet.remove(1);
+
+    /********************************
+     *****	LISTS vs SETS		*****
+     ********************************/    
+    
+   	/**
+   	 (1) Lists are Ordered collection, meaning the order of insertion is preserved.
+            E.g.
+            List<string> lstStr = new List<string>();
+            lstStr.add('b');
+            lstStr.add('a');
+            lstStr.add('d');
+
+		Output = b,a,d  
+
+        Sets are Unordered collection, meaning the order of insertion is NOT preserved.
+            E.g. 
+            Set<string> setStr = new set<string>();
+            lstStr.add('b');
+            lstStr.add('a');
+            lstStr.add('d');
+        
+        Output = a,b,d (auto sorted internally, ascending order)
+
+    (2) Lists (Ordered collection) allows indexing, whereas Sets (Unordered collection) cannot be indexed;
+	(3) Sets don't contain dupes;
+	(4) Lists can be used in DML statements, Sets can not;
+   	 */
+
+    /********************************
+     *****	COLLECTIONS - MAPS	*****
+     ********************************/  
+
+    /**
+     * A map is a collection of key-value pairs (~Dictionary) where each unique key maps to a single value. 
+     * Keys and values can be any data type—primitive types, collections, sObjects, user-defined types, and built-in Apex types.
+    **/
+
+    //As with lists, you can populate map key-value pairs when the map is declared by using curly brace ({}) syntax. 
+    //Within the curly braces, specify the key first, then specify the value for that key using =>. For example:
+    //Below, the value for the key a is b, and the value for the key c is D
+    Map<String, String> MyStrings = new Map<String, String>{'a' => 'b', 'c' => 'd'.toUpperCase()};
+
+    // Define a new map
+    Map<Integer, String> m = new Map<Integer, String>(); 
+
+    m.put(1, 'First entry');                 
+    m.put(2, 'Second entry');               
+    
+    // Assert that the map contains a key
+    System.assert(m.containsKey(1));  
+    
+    String value = m.get(2);               
+    System.assertEquals('Second entry', value);
+    
+    // Return a set that contains all of the keys in the map
+    Set<Integer> s = m.keySet();       
+   
+    /**
+     * CONSIDERATIONS:
+     * 1) A map key can hold the null value.
+     * 2) Adding a map entry with a key that matches an existing key in the map overwrites the existing 
+     *    entry with that key with the new entry.
+     * 3) Map keys of type String are case-sensitive.
+    **/
+    
+    /************************
+     *****	  LOOPS		*****
+     ************************/
+
+    for(Integer i = 0; i < lstList1.size(); i++) 
+    {
+        // Write value to the debug log
+        System.debug(lstList1[i]);
+	}
+
+    /********************************
+     *****	  BUKIFICATION		*****
+     ********************************/    
+   
+    /**
+     * method 1 - Standard DML Statement
+     */ 
+    
+   	// Create a list of contacts
+    List<Contact> conList = new List<Contact> {
+        	new Contact(FirstName='Joe',LastName='Smith',Department='Finance'),
+            new Contact(FirstName='Kathy',LastName='Smith',Department='Technology'),
+            new Contact(FirstName='Caroline',LastName='Roth',Department='Finance'),
+            new Contact(FirstName='Kim',LastName='Shain',Department='Education')};
+                
+    // Bulk insert all contacts with one DML call
+    insert conList;
+    
+    // List to hold the new contacts to update
+    List<Contact> listToUpdate = new List<Contact>();
+    
+    // Iterate through the list and add a title only
+    //   if the department is Finance
+    for(Contact con : conList) 
+    {
+        if (con.Department == 'Finance') 
+        {
+            con.Title = 'Financial analyst';
+            // Add updated contact sObject to the list.
+            listToUpdate.add(con);
+        }
+    }
+    // Bulk update all contacts with one DML call
+    update listToUpdate;
+
+    /**
+     * method 2 - Use Database() method
+     */  
+    
+    // Create a list of contacts
+    List<Contact> conList = new List<Contact> {
+            new Contact(FirstName='Joe',LastName='Smith',Department='Finance'),
+            new Contact(FirstName='Kathy',LastName='Smith',Department='Technology'),
+            new Contact(FirstName='Caroline',LastName='Roth',Department='Finance'),
+            new Contact()};
+                
+    // Bulk insert all contacts with one DML call
+    // This is how you call the insert method with the [allOrNone] set to false.
+    Database.SaveResult[] srList = Database.insert(conList, false);
+    
+    // Iterate through each returned result
+    for (Database.SaveResult sr : srList) 
+    {
+        if (sr.isSuccess()) 
+        {
+            // Operation was successful, so get the ID of the record that was processed
+            System.debug('Successfully inserted contact. Contact ID: ' + sr.getId());
+        } 
+        else 
+        {
+            // Operation failed, so get all errors
+            for(Database.Error err : sr.getErrors()) {
+                System.debug('The following error has occurred.');
+                System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                System.debug('Contact fields that affected this error: ' + err.getFields());
+         }
+        }
+    }
+    /**
+     * Should You Use DML Statements or Database Methods?
+     * 
+	 * Use DML statements if you want any error that occurs during bulk DML processing to be thrown as an Apex exception 
+	 * 	that immediately interrupts control flow (by using try. . .catch blocks). 
+	 * 	This behavior is similar to the way exceptions are handled in most database procedural languages.
+	 * Use Database class methods if you want to allow partial success of a bulk DML operation—if a record fails, 
+	 * 	the remainder of the DML operation can still succeed. Your application can then inspect the rejected records and 
+	 * 	possibly retry the operation. When using this form, you can write code that never throws DML exception errors. 
+	 * 	Instead, your code can use the appropriate results array to judge success or failure. 
+	 * 	Note that Database methods also include a syntax that supports thrown exceptions, similar to DML statements.
+     */ 
+
+    /********************************
+     *****	  		SOQL		*****
+     ********************************/   
+    
+    /**
+     * Example 1
+     */ 
+    
+    //Get related records with inner clause
+    Account[] acctsWithContacts = [SELECT Name, (SELECT FirstName,LastName FROM Contacts)
+                                   FROM Account 
+                                   WHERE Name = 'SFDC Computing'];
+    
+    // Get child records using Dot notion
+    Contact[] cts = acctsWithContacts[0].Contacts;
+    
+    System.debug('Name of first associated contact: ' + cts[0].FirstName + ', ' + cts[0].LastName);    
+    
+     /**
+     * Example 2
+     */    
+    Contact[] cts = [SELECT Account.Name 
+                     FROM 	Contact 
+                     WHERE 	FirstName = 'Carol' 
+                     AND 	LastName='Ruiz'];
+    
+    Contact carol = cts[0];
+    
+    //get related PARENT using Dot notion
+    String acctName = carol.Account.Name;
+    
+    System.debug('Carol\'s account name is ' + acctName);
+
+    /**
+     * Example 3 - use the SOQL in a For loop. 
+     * 			   The SOQL retrieves records in batches of 200 (using the SOAP API), which avoids hitting Heap Size limits;
+     */  
+    insert new Account[]{new Account(Name = 'for loop 1'), 
+                         new Account(Name = 'for loop 2'), 
+                         new Account(Name = 'for loop 3')};
+                             
+    // The sObject list format executes the for loop once per returned batch
+    // of records
+    Integer i=0;
+    Integer j=0;
+    
+    for (Account[] tmp : [SELECT Id FROM Account WHERE Name LIKE 'for loop _']) 
+    {
+        j = tmp.size();
+        i++;
+    }
+    
+    //// The list should have contained the three accounts
+    System.assertEquals(3, j); 
+                           
+    // Since a single batch can hold up to 200 records and,only three records should have been returned, 
+    // the loop should have executed only once
+    System.assertEquals(1, i); 
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
