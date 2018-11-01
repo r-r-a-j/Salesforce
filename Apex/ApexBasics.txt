@@ -16,7 +16,7 @@ public class ApexBasics
     String[] lstList2 = new List<String>();
     
     /* 
-     * Generally, it’s easier to create a list rather than an array because lists don’t 
+     * Generally, itâ€™s easier to create a list rather than an array because lists donâ€™t 
      * require you to determine ahead of time how many elements you need to allocate.
     **/
     
@@ -57,7 +57,7 @@ public class ApexBasics
      * A Set is an unordered collection of elements that do not contain any duplicates. 
      * Set elements can be of any data type (primitive types, collections, sObjects...etc)
      * Apex internally uses a hash structure for all sets.
-     * A set is an unordered collection—you can’t access a set element at a specific index. You can only iterate over set elements.
+     * A set is an unordered collectionâ€”you canâ€™t access a set element at a specific index. You can only iterate over set elements.
      * Sets can contain up to only four levels of nested collections
      * 
      * https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_methods_system_set.htm#apex_methods_system_set
@@ -109,7 +109,7 @@ public class ApexBasics
 
     /**
      * A map is a collection of key-value pairs (~Dictionary) where each unique key maps to a single value. 
-     * Keys and values can be any data type—primitive types, collections, sObjects, user-defined types, and built-in Apex types.
+     * Keys and values can be any data typeâ€”primitive types, collections, sObjects, user-defined types, and built-in Apex types.
     **/
 
     //As with lists, you can populate map key-value pairs when the map is declared by using curly brace ({}) syntax. 
@@ -224,7 +224,7 @@ public class ApexBasics
 	 * Use DML statements if you want any error that occurs during bulk DML processing to be thrown as an Apex exception 
 	 * 	that immediately interrupts control flow (by using try. . .catch blocks). 
 	 * 	This behavior is similar to the way exceptions are handled in most database procedural languages.
-	 * Use Database class methods if you want to allow partial success of a bulk DML operation—if a record fails, 
+	 * Use Database class methods if you want to allow partial success of a bulk DML operationâ€”if a record fails, 
 	 * 	the remainder of the DML operation can still succeed. Your application can then inspect the rejected records and 
 	 * 	possibly retry the operation. When using this form, you can write code that never throws DML exception errors. 
 	 * 	Instead, your code can use the appropriate results array to judge success or failure. 
@@ -289,6 +289,20 @@ public class ApexBasics
     // Since a single batch can hold up to 200 records and,only three records should have been returned, 
     // the loop should have executed only once
     System.assertEquals(1, i); 
+
+    /**
+     * Example 4 - Use AggregateResult to obtain aggregates
+     */  
+	List<AggregateResult> results  = [SELECT 	Industry
+							,count(Id) total
+	    				  FROM 		Account 
+					  GROUP BY 	Industry];
+	
+	for (AggregateResult ar : results) 
+	{
+	    System.debug('Industry: ' + ar.get('Industry'));
+	    System.debug('Total Accounts: ' + ar.get('total'));
+	}
 
     
 }
