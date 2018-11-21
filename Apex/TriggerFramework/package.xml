@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>AccountTriggerHandler</members>
+        <members>CorpAccountQueuedTriggerHandler</members>
+        <members>CorporateAccountTriggerHandler</members>
+        <members>TriggerHandler</members>
+        <members>TriggerHandlerTest</members>
+        <members>TriggerInterface</members>
+        <name>ApexClass</name>
+    </types>
+    <version>43.0</version>
+</Package>

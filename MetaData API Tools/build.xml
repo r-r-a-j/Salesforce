@@ -1,0 +1,151 @@
+<!--
+	DESCRIPTION	: Script to interact with Salesfroce Orgs using the MetaData API.
+				  To use, simply call 'ant run' and follow the on screen instructions.				  	
+	AUTHOR		: Ravi Raj
+	HISTORY		#		DATE		AUTHOR			DESCTIPTION
+				1		21/11/2018	Ravi Raj		Initial version
+
+-->
+<project name="SFDCMetaDataAPI" default="test" basedir="." xmlns:sf="antlib:com.salesforce" xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="../ant-salesforce.jar" />        	
+        </classpath>
+    </taskdef>
+
+    <property file="build.properties"/>
+    <property name="userName" value="NULL"/>
+    <property name="password" value="NULL"/>
+    <property name="URL" value="NULL"/>
+	<property name="sessionId" value="10"/>
+	<condition property="sf.maxPoll" value="10"> <not> <isset property="sf.maxPoll"/> </not> </condition>
+
+    <!--
+    	Public entry point
+    -->
+    <target name="run">
+    	<input message=">>>>>>>>>>>> Debug mode?: " addproperty="_debug" validargs="y,n" defaultvalue="y"/>  
+		<input message=">>>>>>>>>>>> What do you want to do?: " addproperty="_action" validargs="ret,changeset,deploy"  defaultvalue="ret"/>    
+    	<input message=">>>>>>>>>>>> Which Source Environment: " addproperty="_environment" validargs="olsdemo,b"  defaultvalue="olsdemo"/>
+        <getCredentials/>
+ 		<input message=">>>>>>>>>>>> Enter Folder Name (note: *not* full Dir path): " addproperty="_dir"/>
+
+  		<script language="javascript"> 
+	    <![CDATA[
+
+    	if(project.getProperty("_debug") == "y") 
+    	{
+			var echo = SFDCMetaDataAPI.createTask("echo");
+        	echo.setMessage(">>>>>>>>>>>> You want to [[" + project.getProperty("_action") + "]]");
+        	echo.perform();
+			echo.setMessage(">>>>>>>>>>>> From instance [[" + project.getProperty("_environment") + " / " + project.getProperty("URL") + "]]");
+            echo.perform();
+            echo.setMessage(">>>>>>>>>>>> Using these credentials [[" + project.getProperty("userName") + " / " + project.getProperty("password") + "]]");
+            echo.perform();
+            echo.setMessage(">>>>>>>>>>>> And place into Folder [[" + project.getProperty("_dir") + "]]");
+            echo.perform();       
+		}
+	
+	    ]]> 
+		</script>
+
+		<input message=">>>>>>>>>>>> Proceed? " addproperty="_proceed" validargs="y,n" defaultvalue="y"/>
+
+ 		<script language="javascript"> 
+	    <![CDATA[
+
+	    if (project.getProperty("_proceed") === "y")
+	    {
+	    	switch (project.getProperty("_action")) 
+	    	{
+			    case "ret":
+			        self.project.executeTarget("Retrieve");
+			        break;
+			    case "changeset":
+			        self.project.executeTarget("retChangeSet");
+			        break;
+		    	case "deploy":
+			        self.project.executeTarget("Deploy");
+			        break;
+			    default:
+			    	break;
+			} 
+		}
+		else
+      	{
+			fail = project.createTask("fail");
+            fail.setMessage("Please try again!");
+            fail.execute();
+      	}
+	
+	    ]]> 
+		</script>
+    </target>
+ 
+	<target name="Retrieve">
+
+		<mkdir dir="${_dir}"/>
+		<!-- 
+			Add the following argument if you want to use Sessions
+			sessionId="${sessionId}"
+		-->
+      	<sf:retrieve 	username="${userName}" 
+						password="${password}"  
+						serverurl="${URL}" 
+						maxPoll="${sf.maxPoll}" 
+						retrieveTarget="${_dir}" 
+						unpackaged="package.xml"/>
+    </target>
+
+    <target name="retChangeSet">
+
+		<input message=">>>>>>>>>>>> Change Set Name?: " addproperty="_changeSetName"/>
+
+      	<!-- Retrieve the contents into another directory -->
+      	<sf:retrieve 	username="${userName}" 
+						password="${password}" 
+						serverurl="${URL}" 
+						maxPoll="${sf.maxPoll}" 
+						retrieveTarget="${_dir}" 
+						packageNames="${_changeSetName}"/>
+    </target>
+
+    <target name="Deploy">
+    	
+    	<sf:deploy 	username="${userName}" 
+					password="${password}" 
+					serverurl="${URL}" 
+					maxPoll="${sf.maxPoll}" 
+					deployRoot="${_dir}" 
+					rollbackOnError="true"/>
+     </target>
+    <!--
+    	Gets & assigns credentials from the Build.properties file
+    -->
+    <scriptdef name="getCredentials" language="javascript">
+    	<![CDATA[
+    	//get User Input for Environment selection
+    	var env = project.getProperty("_environment");
+
+    	//Get build.properties variables
+    	un = project.getProperty(env + ".un");
+    	pwd = project.getProperty(env + ".pwd");
+    	url = project.getProperty(env + ".URL");
+
+    	if (un && pwd && url)
+    	{
+    		//successfully retreived, so assign to local variables
+	      	project.setProperty("userName", un);
+	      	project.setProperty("password", pwd);
+	      	project.setProperty("URL", url);
+      	}
+      	else
+      	{
+			fail = SFDCMetaDataAPI.createTask("fail");
+            fail.setMessage("Failed to retreive the specified environment (" + env + ") credntials from the build.properties file");
+            fail.execute();
+      	}
+      	]]>
+    </scriptdef>
+</project>
