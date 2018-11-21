@@ -1,4 +1,6 @@
 <!--
+	http://alexander-brett.co.uk/2014/08/19/Javascript-for-SFDC-Deployments.html
+
 	DESCRIPTION	: Script to interact with Salesfroce Orgs using the MetaData API.
 				  To use, simply call 'ant run' and follow the on screen instructions.				  	
 	AUTHOR		: Ravi Raj
