@@ -1,3 +1,8 @@
+/**
+The system saves the records that fired the before trigger after the trigger finishes execution. 
+You can modify the records in the trigger without explicitly calling a DML insert or update operation. 
+If you perform DML statements on those records, you get an error.
+*/
 public class AccountTriggerHandler
 {
     /**
