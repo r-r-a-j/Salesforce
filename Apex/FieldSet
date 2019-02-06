@@ -1,0 +1,72 @@
+/*
+ *	DESCRIP		:	Utilities class to be used across all objects
+ *  @author		: 	Ravi Raj [RR]
+ *	DATE		: 	06/02/19
+ * 	HISTORY		: 	ID 	 	  DATE			 AUTHOR			 DESCRIPTION
+ *				  	====	========		=========		=============	
+ *				   	1		06/02/19		Ravi Raj		Initial version
+ */
+public class Utils 
+{
+    /**
+    * Logs fields to an Audit History object if they have been signalled as auditable in the source object's Feild Set AND they have changed.
+    * @author :  Ravi Raj [RR]
+    * @version : 1.0
+    */ 
+    public static void logAuditHistory(String strObject, String strFieldSetName, List<sObject> newObjectList, Map<id, sObject> oldObjectMap) 
+    {        
+        //get the list of old values
+        List<sObject> oldObjectList = oldObjectMap.values();
+        
+        //get the relevant Field Set for the source object
+        List<Schema.FieldSetMember> lstFieldSetMembers = Utils.getFieldSetMembers(strObject, strFieldSetName);
+
+        //Loop through all fields in the Field Set
+        for(Schema.FieldSetMember fsFieldSetMember : lstFieldSetMembers) 
+        {
+            //loop through New values
+            for (sObject objNew : newObjectList)
+            {
+                //get old record
+                sObject objOld = oldObjectMap.get(objNew.id);
+                
+                //compare
+                if (objOld.get(fsFieldSetMember.getFieldPath()) != objNew.get(fsFieldSetMember.getFieldPath()) )
+                {
+                    //Values are different
+                    //
+                    // This is for testing purposes....please Bulkify!!!
+                    //
+                    History__c objHistory = new History__c();
+                    objHistory.Object__c = strObject;
+                    objHistory.Field__c = fsFieldSetMember.getFieldPath();
+                    objHistory.Prior__c = (String)objOld.get(fsFieldSetMember.getFieldPath());
+                    objHistory.Current__c = (String)objNew.get(fsFieldSetMember.getFieldPath());
+                    insert objHistory;
+                }
+            } 
+        }
+    }
+    
+    /**
+    * Retrieves a given Field Set [strFieldSetName] from a particular object [strObject]
+    * @author :  Ravi Raj [RR]
+    * @version : 1.0
+    */ 
+    public static List<Schema.FieldSetMember> getFieldSetMembers(String strObject, String strFieldSetName) 
+    {
+        DescribeSObjectResult[] strArrDescribes = Schema.describeSObjects(new String[] {strObject});
+    
+        if (strArrDescribes != null && strArrDescribes.size() > 0) 
+        {
+            // There should only be the one match for the one object type name
+            Schema.FieldSet fsFieldSet = strArrDescribes[0].fieldSets.getMap().get(strFieldSetName);
+    
+            return fsFieldSet.fields;
+        } 
+        else 
+        {
+            return null;
+        }
+    }
+}
