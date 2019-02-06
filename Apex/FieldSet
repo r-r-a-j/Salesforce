@@ -10,6 +10,7 @@ public class Utils
 {
     /**
     * Logs fields to an Audit History object if they have been signalled as auditable in the source object's Feild Set AND they have changed.
+    * A Field Set is required in the appropriate Object (preferably named "Audit_History").
     * @author :  Ravi Raj [RR]
     * @version : 1.0
     */ 
