@@ -1,0 +1,47 @@
+/*
+ Takes a String and adds a space after each Chinese character.
+
+*/
+
+public class ParseChars 
+{
+    Public static String parseChinese(String strInput)
+    {
+        //Get string into list
+        List<String> lstOutput = new List<String>();
+        
+        //loop string input to split, char by char
+        Integer i=0;
+        do
+        {
+            if(i < strInput.length())
+            {
+                lstOutput.add(strInput.substring(i, i + 1));
+            }
+            i++;
+        }
+        while(i < strInput.length());
+        
+        String strOutput = '';
+        
+        //Chinese chars only
+		Pattern p = Pattern.compile('\\p{IsHan}');
+   
+        //loop through the String List of chars
+        For (String str : lstOutput)
+        {     
+            Matcher m = p.matcher( str );
+            if(m.find())
+            {
+               //Chinese characters
+               strOutput += str + ' ';   
+            }
+            else
+            {
+                strOutput += str;                
+            } 
+        }
+        
+        return strOutput;        
+    }
+}
