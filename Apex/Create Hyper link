@@ -1,12 +1,18 @@
 Step 1: Have junction Obj have lots of Lookups()
 
 Step 2: If you only want to show a hyper link of the record (instead of lots of empty fields), use a standalone Hyperlink Formula Field
-2A) Create Formula field of type TEXT
-2B) Insert the following:
+
+2A) Create [Target_Object__c] (Text). Place a String version of the target Object (i.e. "Class__c", "Account". "Opportunity"...etc)
+
+2B) Create [Object_Id__c] (Id). Place the actual ID of the Target Object here (i.e. "a2r0n0000004w1wAAA"...etc)
+
+2C) Create [Record__c] (Formula field | TEXT).
+
+2D) Insert the following in the formula field:
 
           HYPERLINK(  "/lightning/r/" 
                     & Target_Object__c 
                     & "/" 
                     & Object_Id__c 
                     & "/view"
-                    ,  Name__c )
+                    , "Friendly URL Name" )
