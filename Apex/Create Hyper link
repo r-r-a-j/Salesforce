@@ -2,10 +2,25 @@ Step 1: Have junction Obj have lots of Lookups()
 
 Step 2: If you only want to show a hyper link of the record (instead of lots of empty fields), use a standalone Hyperlink Formula Field
 
-2A) Create [Target_Object__c] (Text). Place a String version of the target Object (i.e. "Class__c", "Account". "Opportunity"...etc)
-
+2A) Create [Target_Object__c] (Formula field | TEXT). Place a String version of the target Object (i.e. "Class__c", "Account". "Opportunity"...etc)
+                    IF( $RecordType.Name = "Account Role", "Account",  
+                       IF( $RecordType.Name = "Contract Role", "Contract",  
+                         IF( $RecordType.Name = "Opportunity Role", "Opportunity", 
+                           IF( $RecordType.Name = "Hotel Role", "Hotel", "No record type found")
+                           )
+                        )
+                    )
+                    
 2B) Create [Object_Id__c] (Id). Place the actual ID of the Target Object here (i.e. "a2r0n0000004w1wAAA"...etc)
-
+                    IF(NOT(ISBLANK(Account__c)) ,  Account__r.Id , 
+                         IF(NOT(ISBLANK(Opportunity__c)) ,  Opportunity__r.Id , 
+                             IF(NOT(ISBLANK(Hotel__c)) ,  Hotel__r.Id , 
+                                 IF(NOT(ISBLANK(Contract__c)) ,  Contract__r.Id , "Unable to get Object ID" 
+                                 ) 
+                             ) 
+                          ) 
+                     )
+                     
 2C) Create [Record__c] (Formula field | TEXT).
 
 2D) Insert the following in the formula field:
