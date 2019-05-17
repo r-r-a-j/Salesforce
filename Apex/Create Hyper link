@@ -23,11 +23,14 @@ Step 2: If you only want to show a hyper link of the record (instead of lots of 
                      
 2C) Create [Record__c] (Formula field | TEXT).
 
-2D) Insert the following in the formula field:
+2D) Create [Type__c] (Formula field | TEXT). Place a friendly version of the Object name here(i.e. "Hotel" instead of "Hotel__c"...etc)
+                    $RecordType.Name
+                    
+2E) Insert the following in the formula field:
 
           HYPERLINK(  "/lightning/r/" 
                     & Target_Object__c 
                     & "/" 
                     & Object_Id__c 
                     & "/view"
-                    , "Friendly URL Name" )
+                    , Type__c )
