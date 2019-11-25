@@ -1,4 +1,4 @@
-public Utils
+public class Utils 
 {
     /**
       Creates a SF File and attaches it to a given Record, under the Files object 
