@@ -1,14 +1,14 @@
 public Utils
 {
     /**
-      Creates a SF File and attaches it to a given File object 
+      Creates a SF File and attaches it to a given Record, under the Files object 
     */
     public static void createFile(Id idRecord, String strFileName, String strXML)
     {
       //Step 1 - create & insert a [ContentVersion]
       ContentVersion cv = new ContentVersion();
       cv.Title = strFileName + '_' + Datetime.now().getTime() + '.xml';
-      cv.PathOnClient = 'strFileName' + '_' + Datetime.now().getTime() + '.xml';
+      cv.PathOnClient = strFileName + '_' + Datetime.now().getTime() + '.xml';
       //"S" = Doc is in SF
       //"E" = Doc is external
       cv.ContentLocation = 'S';
