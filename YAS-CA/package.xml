@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- [AuraDefinitionBundle] = LEX bundles - Components, JS controllers, events...etc -->
+    <!-- [ApexClass] = Apex Class --> 
+    <!-- [ApexTrigger] = Trigger Class --> 
+    <!-- [CustomObject] = Custom Object (& Custom MetaData Types)  -->  
+    <!-- [CustomMetadata] = Custom MetaData Types Records  -->      
+    <!-- [FlexiPage] = Represents the metadata associated with a Lightning page.  --> 
+    <!-- [CustomApplication] = CustomApplication represents a custom or standard application.  -->     
+    <!-- [Layout] = Represents the metadata associated with a page layout  -->  
+    <!-- [Report] = Use [SELECT Name, DeveloperName, FolderName FROM Report] to pin point the Folder name  -->       
+    <!-- [Dashboard] = Use [SELECT id, FolderName, title, DeveloperName FROM Dashboard] to pin point the DeveloperName. Note: You will need to pull over the particular folder too, else the deploy will fail  -->      
+    <types>
+        <members>Public</members>        
+        <members>Public/ReIJtTlqvxRjQOgbNMQDkNIQEbggMF</members>
+        <name>Dashboard</name>
+    </types>  
+    <types>
+        <members>Public Reports/PMD_Outputs_Report2_HaM</members>
+        <members>Public Reports/CPD_Report_yWv</members>
+        <members>Public Reports/PMD_Outputs_Report_FFq</members>
+        <name>Report</name>
+    </types>   
+    <types>
+        <members>CodeAnalysis</members> 
+        <members>Utils</members> 
+        <name>ApexClass</name>  
+    </types>   
+    <types>
+        <members>PMDOutputTrigger</members> 
+        <members>PropertyTrigger</members> 
+        <members>RuleTrigger</members> 
+        <members>CodeAnalysisTrigger</members> 
+        <name>ApexTrigger</name>  
+    </types>  
+    <types>
+        <members>Code_Analysis__c</members> 
+        <members>Duplication__c</members> 
+        <members>Copy_Paste_Scan__c</members>
+        <members>Rule_Set__c</members> 
+        <members>Rule__c</members> 
+        <members>Property__c</members> 
+        <members>PMD_Output__c</members>         
+        <name>CustomObject</name>  
+    </types>     
+    <types>
+        <members>Code_Analysis</members>
+        <name>CustomApplication</name>
+    </types>     
+     <types>
+        <members>Code_Analysis_Record_Page</members>
+        <members>Duplication_Record_Page</members>
+        <members>Rule_Set_Record_Page</members>
+        <name>FlexiPage</name>
+    </types>  
+    <types>
+        <members>Code_Analysis_Record_Page</members>
+        <members>Duplication_Record_Page</members>
+        <members>Rule_Set_Record_Page</members>
+        <name>FlexiPage</name>
+    </types> 
+    <types>
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>       
+    <types>
+        <members>*</members>
+        <name>Layout</name>
+    </types>  
+    <types>
+        <members>*</members>
+        <name>CustomMetadata</name>
+    </types>         
+    <version>43.0</version>
+</Package>

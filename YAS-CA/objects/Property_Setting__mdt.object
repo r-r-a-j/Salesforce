@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Rule__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Rule</label>
+        <referenceTo>Rule_Setting__mdt</referenceTo>
+        <relationshipLabel>Properties</relationshipLabel>
+        <relationshipName>Properties</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <label>Property</label>
+    <pluralLabel>Properties</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
