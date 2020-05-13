@@ -45,7 +45,339 @@ public class CrossOrgCollaborationTest
             lstFeedItems.add(new FeedItem(Body = 'Test Comment ' + x, Type = 'TextPost', ParentId = lstOpportunity.get(x).Id));
         }
         insert lstFeedItems;
-        //List<FeedItem> x = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem];
+        
+         //Add more FeedItems, but pointed to Accounts instead
+         lstFeedItems.clear();
+         for(Integer x = 0; x < 10; x++)
+         {
+             lstFeedItems.add(new FeedItem(Body = 'Test Comment ' + x, Type = 'TextPost', ParentId = lstAccount.get(x).Id, Title = 'Account Feed'));
+         }
+         insert lstFeedItems;    
+         
+         //Add more FeedItems, but pointed to the same Opportunity (hard code the Oppty index)
+         lstFeedItems.clear();
+         for(Integer x = 0; x < 10; x++)
+         {
+             lstFeedItems.add(new FeedItem(Body = 'Test Comment ' + x, Type = 'TextPost', ParentId = lstOpportunity.get(1).Id, Title = 'Opportunity Feed'));
+         }
+         insert lstFeedItems;          
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunitySubSet()
+    Description     : Test 10 FeedItems, all linked to 10 Accounts (not Opportunities). 
+                      Test the returned List of Opportunities and also the update to the 
+                      size of the Map variable. As no FeedItems are linked to Opportunities, the method should simply exit. 
+    Expected Output : (1) Opportunity Id List size = 0 
+                      (2) Map size = 0
+    ********************************************************************/
+    @isTest 
+    static void getOpportunitySubSetTest1() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+
+        //Get FeedItems that are attached to Accounts (distinguished by the WHERE clause)
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem WHERE Title = 'Account Feed' LIMIT 10]; 
+
+        List<String> lstOpptyIds = objCrossOrgCollab.getOpportunitySubSet(lstFeedItems, mapMyMap);
+
+        //Assert(1): 0 returned Opportunity IDs
+        System.assertEquals(0, lstOpptyIds.size());
+
+        //Assert(2): 0 returned Map values
+        System.assertEquals(0, mapMyMap.size());
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunitySubSet()
+    Description     : Test 10 FeedItems, all linked to different 10 Opportunities. 
+                      Test the returned List of Opportunities and also the update to the Map variable 
+    Expected Output : (1) Opportunity Id List size = 10 
+                      (2) Map size = 10
+    ********************************************************************/
+    @isTest 
+    static void getOpportunitySubSetTest2() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 10];  
+        List<String> lstOpptyIds = objCrossOrgCollab.getOpportunitySubSet(lstFeedItems, mapMyMap);
+
+        //Assert(1): 10 returned discrete Opportunity IDs
+        System.assertEquals(10, lstOpptyIds.size());
+
+        //Assert(2): 10 returned Map values
+        System.assertEquals(10, mapMyMap.size());
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunitySubSet()
+    Description     : Test 10 FeedItems, 5 of which are linked to Accounts, and 5 x linked to Opportunities. 
+                      Test the returned List of Opportunities and also the update to the 
+                      size of the Map variable. As only 5 x FeedItems are linked to Opportunities, the returned variables should be 5. 
+    Expected Output : (1) Opportunity Id List size = 5
+                      (2) Map size = 5
+    ********************************************************************/
+    @isTest 
+    static void getOpportunitySubSetTest3() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+
+        //Get FeedItems that are attached to Accounts (distinguished by the WHERE clause)
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem WHERE Title = 'Account Feed' LIMIT 5]; 
+        List<FeedItem> lstFeedItemsAcct = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 5]; 
+
+        for (FeedItem objFeedItemsAcct: lstFeedItemsAcct) 
+        {
+            lstFeedItems.add(objFeedItemsAcct);
+        }
+        List<String> lstOpptyIds = objCrossOrgCollab.getOpportunitySubSet(lstFeedItems, mapMyMap);
+
+        //Assert(1): 5 returned Opportunity IDs
+        System.assertEquals(5, lstOpptyIds.size());
+
+        //Assert(2): 5 returned Map values
+        System.assertEquals(5, mapMyMap.size());
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunityForOneForce()
+    Description     : 0 Opportunities 
+    Expected Output : (1) Opportunity/FeedItem Map size = 0
+    ********************************************************************/
+    @isTest 
+    static void getOpportunityForOneForceTest1() 	
+	{
+        //public Map<Opportunity, List<FeedItem>> getOpportunityForOneForce(List<String> lstOpptyIds, Map<String, List<FeedItem>> mapMyMap)
+
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+        
+        List<String> lstOpptyIds = new List<String>();
+        Map<Opportunity, List<FeedItem>> mapOpptyFeedItems = objCrossOrgCollab.getOpportunityForOneForce(lstOpptyIds, mapMyMap);
+
+        //Assert(1): 0 returned Opportunity/FeedItems
+        System.assertEquals(0, mapOpptyFeedItems.size());
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunityForOneForce()
+    Description     : 1 Opportunities but no [OneForce_Project_Id__c] value populated 
+    Expected Output : (1) Opportunity/FeedItem Map size = 0
+    ********************************************************************/
+    @isTest 
+    static void getOpportunityForOneForceTest2() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+        List<String> lstOpptyIds = new List<String>();
+
+        Opportunity objOpportunity = [SELECT Id, OneForce_Project_Id__c FROM Opportunity LIMIT 1];
+        lstOpptyIds.add(objOpportunity.Id);    
+
+        Map<Opportunity, List<FeedItem>> mapOpptyFeedItems = objCrossOrgCollab.getOpportunityForOneForce(lstOpptyIds, mapMyMap);
+
+        //Assert(1): 0 returned Opportunity/FeedItems
+        System.assertEquals(0, mapOpptyFeedItems.size());
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunityForOneForce()
+    Description     : 1 Opportunities with [OneForce_Project_Id__c] field populated, along with 1 FeedItem 
+    Expected Output : (1) Opportunity/FeedItem Map size = 1
+                      (2) Map's value (FeedItem) size = 1
+                      (3) Map's Key (Opportunity) is the same as the one passed in as an argument
+    ********************************************************************/
+    @isTest 
+    static void getOpportunityForOneForceTest3() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+        List<String> lstOpptyIds = new List<String>();
+
+        //update 1 x Opportunity with [OneForce_Project_Id__c] populated. Save back to DB 
+        Opportunity objOpportunity = [SELECT Id, OneForce_Project_Id__c FROM Opportunity LIMIT 1];
+        objOpportunity.OneForce_Project_Id__c = '123456789';
+        upsert objOpportunity;
+
+        lstOpptyIds.add(objOpportunity.Id);  
+        
+        //get all [FeedItems] & insert them all under 1 x Opportunity
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 1];  
+        mapMyMap.put(objOpportunity.Id, lstFeedItems);
+
+        Map<Opportunity, List<FeedItem>> mapOpptyFeedItems = objCrossOrgCollab.getOpportunityForOneForce(lstOpptyIds, mapMyMap);
+
+        //Assert(1): 1 returned Opportunity/FeedItems
+        System.assertEquals(1, mapOpptyFeedItems.size());
+
+        //Check 1st element of Map's value is a list of [FeedItems]...
+        List<FeedItem> lstRetFeedItem = mapOpptyFeedItems.get(objOpportunity);
+        //Assert(2): List Size = 1 
+        System.assertEquals(1, lstRetFeedItem.size());   
+
+        if(mapOpptyFeedItems.containsKey(objOpportunity))
+        {
+            //Assert(3)       
+            System.assertEquals(1, 1);
+        }
+        else 
+        {
+            //deliberately throw an exception, merely to flag it up
+            System.assertEquals(1, 2);
+        }
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunityForOneForce()
+    Description     : 1 Opportunities with [OneForce_Project_Id__c] field populated, along with 10 FeedItem 
+    Expected Output : (1) Opportunity/FeedItem Map size = 1
+                      (2) Map's value (FeedItem) size = 1
+                      (3) Map's Key (Opportunity) is the same as the one passed in as an argument
+    ********************************************************************/
+    @isTest 
+    static void getOpportunityForOneForceTest4() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+        List<String> lstOpptyIds = new List<String>();
+
+        //update 1 x Opportunity with [OneForce_Project_Id__c] populated. Save back to DB 
+        Opportunity objOpportunity = [SELECT Id, OneForce_Project_Id__c FROM Opportunity LIMIT 1];
+        objOpportunity.OneForce_Project_Id__c = '123456789';
+        upsert objOpportunity;
+
+        lstOpptyIds.add(objOpportunity.Id);  
+        
+        //get all [FeedItems] & insert them all under 1 x Opportunity
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 10];  
+        mapMyMap.put(objOpportunity.Id, lstFeedItems);
+
+        Map<Opportunity, List<FeedItem>> mapOpptyFeedItems = objCrossOrgCollab.getOpportunityForOneForce(lstOpptyIds, mapMyMap);
+
+        //Assert(1): 1 returned Opportunity/FeedItems
+        System.assertEquals(1, mapOpptyFeedItems.size());
+
+        //Check 1st element of Map's value is a list of [FeedItems]...
+        List<FeedItem> lstRetFeedItem = mapOpptyFeedItems.get(objOpportunity);
+        //Assert(2): List Size = 10 
+        System.assertEquals(10, lstRetFeedItem.size());   
+
+        if(mapOpptyFeedItems.containsKey(objOpportunity))
+        {
+            //Assert(3)        
+            System.assertEquals(1, 1);
+        }
+        else 
+        {
+            //deliberately throw an exception, merely to flag it up
+            System.assertEquals(1, 2);
+        }
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunityForOneForce()
+    Description     : 5 Opportunities with [OneForce_Project_Id__c] field populated, along with 10 FeedItem each
+    Expected Output : (1) Opportunity/FeedItem Map size = 5
+                      (2) Each Map's value (FeedItem) size = 10
+
+    ********************************************************************/
+    @isTest 
+    static void getOpportunityForOneForceTest5() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+        List<String> lstOpptyIds = new List<String>();
+        Integer intRandomNum = Integer.valueof((Math.random() * 10));
+
+        //get all [FeedItems] & insert them all under 1 x Opportunity
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 10];  
+
+        //update 5 x Opportunity with [OneForce_Project_Id__c] populated. Save back to DB 
+        List<Opportunity> lstOpportunity = [SELECT Id, OneForce_Project_Id__c FROM Opportunity LIMIT 5];
+        for (Opportunity opp : lstOpportunity)
+        {
+            opp.OneForce_Project_Id__c = '123456789' + intRandomNum;
+            lstOpptyIds.add(opp.Id);  
+            mapMyMap.put(opp.Id, lstFeedItems);
+        }
+        upsert lstOpportunity;
+        
+        Map<Opportunity, List<FeedItem>> mapOpptyFeedItems = objCrossOrgCollab.getOpportunityForOneForce(lstOpptyIds, mapMyMap);
+
+        //Assert(1): 5 returned Opportunity/FeedItems
+        System.assertEquals(5, mapOpptyFeedItems.size());
+
+        for (Opportunity opp : lstOpportunity)
+        {
+            if(mapOpptyFeedItems.containsKey(opp))
+            {
+                //Check 1st element of Map's value is a list of [FeedItems]...
+                List<FeedItem> lstRetFeedItem = mapOpptyFeedItems.get(opp);
+
+                //Assert(2): List Size = 10 
+                System.assertEquals(10, lstRetFeedItem.size());   
+            }
+            else 
+            {
+                //deliberately throw an exception, merely to flag it up
+                System.assertEquals(1, 2);
+            }
+        }        
+    }
+
+    /*******************************************************************    
+    Method to Test  : getOpportunitySubSet()
+    Description     : Test 10 FeedItems, all of which are linked to the same Opportunity. 
+    Expected Output : (1) Opportunity Id List size = 1
+                      (2) Map size = 1
+                      (3) Map[0].Value.Size = 10
+    ********************************************************************/
+    @isTest 
+    static void getOpportunitySubSetTest4() 	
+	{
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+
+        //Get FeedItems that are attached to Accounts (distinguished by the WHERE clause)
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem WHERE Title = 'Opportunity Feed' LIMIT 10]; 
+
+        List<String> lstOpptyIds = objCrossOrgCollab.getOpportunitySubSet(lstFeedItems, mapMyMap);
+
+        //Assert(1): 1 returned Opportunity IDs
+        System.assertEquals(1, lstOpptyIds.size());
+
+        //Assert(2): 1 returned Map values
+        System.assertEquals(1, mapMyMap.size());
+
+        //Get all (test) Opporuntities
+        List<Opportunity> lstAllOpportunities = [SELECT Id FROM Opportunity];
+        String strOpptyId = '';
+
+        For(Opportunity opp : lstAllOpportunities)
+        {
+            if(mapMyMap.containsKey(opp.Id))
+            {
+                strOpptyId = opp.Id;
+            }
+        }
+        //Check 1st element of Map's value is a list of [FeedItems]...
+        List<FeedItem> lstRetFeedItem = mapMyMap.get(strOpptyId);
+
+        //Assert(3): List Size = 10  
+        System.assertEquals(10, lstRetFeedItem.size());   
     }
 
     /*******************************************************************    
