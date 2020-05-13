@@ -1,0 +1,164 @@
+/******************************************************************** **  
+NAME			:	CrossOrgCollaborationTest 
+DESCRIPTION 	:	CrossOrgCollaboration Test Class
+DATE			:	May 2020
+AUTHOUR			:	Ravi Raj, Salesforce Snr Program Architect
+
+HISTORY
+
+VERSION  	AUTHOR   	DATE  		DESCRIPTIOM    
+1.0    		Ravi Raj  	May 2020	Initial Release
+********************************************************************* **/ 
+@isTest 
+public class CrossOrgCollaborationTest 
+{ 
+    @TestSetup
+    static void setup()
+    { 
+        //set up Account
+        List<Account> lstAccount = new List<Account>();
+        for(Integer x = 0; x < 10; x++)
+        {
+            lstAccount.add(new Account(Name = 'Account Name ' + x));
+        }
+        insert lstAccount;
+
+        //set up Opportunities
+        List<Opportunity> lstOpportunity = new List<Opportunity>();
+        for(Integer x = 0; x < 10; x++)
+        {
+            lstOpportunity.add(new Opportunity(Name = 'Opportunity ' + x
+                                                ,AccountId = lstAccount.get(x).Id
+                                                ,StageName = 'New'
+                                                ,CloseDate = System.today() + 90
+                                                ,City__c = 'Atlanta'
+                                                ,Country__c = 'United States'
+                                                ,Deal_Category__c = 'New Development'
+                                                ,Locator__c = 'USA'));
+        }
+        insert lstOpportunity;
+
+        //set up FeedItems
+        List<FeedItem> lstFeedItems = new List<FeedItem>();
+        for(Integer x = 0; x < 10; x++)
+        {
+            lstFeedItems.add(new FeedItem(Body = 'Test Comment ' + x, Type = 'TextPost', ParentId = lstOpportunity.get(x).Id));
+        }
+        insert lstFeedItems;
+        //List<FeedItem> x = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem];
+    }
+
+    /*******************************************************************    
+    Method to Test  : saveToMap()
+    Description     : Test an empty map 
+    Expected Output : (1) Map size = 1 
+                      (2) Map[0]'s value (List size) = 1
+                      (3) Map[0]'s value contains only the given [FeedItem] sObject 
+    ********************************************************************/
+    @isTest 
+    static void saveToMapTest1() 	
+	{ 
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+
+        FeedItem objFeedItem = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 1];
+        String strOpptyId = '123456789';
+        mapMyMap = objCrossOrgCollab.saveToMap(mapMyMap, strOpptyId, objFeedItem);
+
+        //Assert(1): Map Size = 1
+        System.assertEquals(1, mapMyMap.size());
+
+        //Check 1st element of Map's value is a list of [FeedItems]...
+        List<FeedItem> lstRetFeedItem = mapMyMap.get(strOpptyId);
+
+        //Assert(2): List Size = 1
+        System.assertEquals(1, lstRetFeedItem.size());
+
+        //...and that the list contains the [FeedItem] passed in as an arg
+        //Assert(3): FeedItem in list is the same as FeedItem being passed in as arg to the method 
+        System.assert(objFeedItem == lstRetFeedItem.get(0));
+    }
+
+    /*******************************************************************    
+    Method to Test  : saveToMap()
+    Description     : Test map with 1 x element already. Candidate FeedItem needs to be appended to current element.
+    Expected Output : (1) Map size = 1 
+                      (2) Map[0]'s value (List size) = 11
+                      (3) Map[0]'s tail value (List[10]) contains only the given [FeedItem] sObject 
+    ********************************************************************/
+    @isTest 
+    static void saveToMapTest2() 	
+	{ 
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+        Integer intRandomNum = Integer.valueof((Math.random() * 10));
+
+        //get all [FeedItems] & insert them all under 1 x Opportunity
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 10];  
+        Opportunity objOpportunity = [SELECT Id FROM Opportunity LIMIT 1];
+        mapMyMap.put(objOpportunity.Id, lstFeedItems);
+
+        mapMyMap = objCrossOrgCollab.saveToMap(mapMyMap, objOpportunity.Id, lstFeedItems.get(intRandomNum));
+
+        //Assert(1): Map Size = 1
+        System.assertEquals(1, mapMyMap.size());
+
+        //Check 1st element of Map's value is a list of [FeedItems]...
+        List<FeedItem> lstRetFeedItem = mapMyMap.get(objOpportunity.Id);
+
+        //Assert(2): List Size = 11
+        System.assertEquals(11, lstRetFeedItem.size());
+
+        //...and that the list contains the [FeedItem] passed in as an arg
+        //Assert(3): The [FeedItem] at the tail of the list is the same as FeedItem being passed in as arg to the method 
+        System.assert(lstFeedItems.get(intRandomNum) == lstRetFeedItem.get(10));
+    }
+
+    /*******************************************************************    
+    Method to Test  : saveToMap()
+    Description     : Test map with 1 x element already. Candidate FeedItem needs to be inserted to create 2 x elements 
+    Expected Output : (1) Map size = 2 
+                      (2) Map[1]'s value (List size) = 1
+                      (3) Map[1]'s value contains only the given [FeedItem] sObject 
+                      (4) Map[0]'s value (List size) = 10
+    ********************************************************************/    
+    @isTest 
+    static void saveToMapTest3() 	
+	{ 
+        //instatiated initial objects
+        CrossOrgCollaboration objCrossOrgCollab = new CrossOrgCollaboration();
+        Map<String, List<FeedItem>> mapMyMap = new Map<String, List<FeedItem>>();
+
+        //get all [FeedItems] & insert them all under 1 x Opportunity
+        List<FeedItem> lstFeedItems = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 10];  
+        Opportunity objOpportunity1 = [SELECT Id FROM Opportunity LIMIT 1];
+        mapMyMap.put(objOpportunity1.Id, lstFeedItems);
+
+        //get new candidate
+        Opportunity objOpportunity2  = [SELECT Id FROM Opportunity ORDER BY CloseDate DESC LIMIT 1];
+        FeedItem objFeedItem = [SELECT Id, ParentId, InsertedById, InsertedBy.FirstName, InsertedBy.LastName FROM FeedItem LIMIT 1];
+
+        mapMyMap = objCrossOrgCollab.saveToMap(mapMyMap, objOpportunity2.Id, objFeedItem);
+
+        //Assert(1): Map Size = 2
+        System.assertEquals(2, mapMyMap.size());
+
+        //Check 2nd element of Map's value is a list of [FeedItems]...
+        List<FeedItem> lstRetFeedItem = mapMyMap.get(objOpportunity2.Id);
+
+        //Assert(2): List Size = 1
+        System.assertEquals(1, lstRetFeedItem.size());
+
+        //...and that the list contains the [FeedItem] passed in as an arg
+        //Assert(3): The [FeedItem] at the tail of the list is the same as FeedItem being passed in as arg to the method 
+        System.assert(objFeedItem == lstRetFeedItem.get(0));
+
+        //Check 1st element of Map's value is a list of [FeedItems]...
+        List<FeedItem> lstRetFeedItem2 = mapMyMap.get(objOpportunity1.Id);
+
+        //Assert(4): List Size = 10
+        System.assertEquals(10, lstRetFeedItem2.size());        
+    }    
+} 
