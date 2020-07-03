@@ -62,4 +62,69 @@ public class Utils
         }
         while(timeDiff <= milliSeconds);
     }
+  
+      /**
+      Creates a SF File and attaches it to a given Record, under the Files object 
+    */
+    public static void createFile(Id idRecord, String strFileName, String strXML)
+    {
+      //Step 1 - create & insert a [ContentVersion]
+      ContentVersion cv = new ContentVersion();
+      cv.Title = strFileName + '_' + Datetime.now().getTime() + '.xml';
+      cv.PathOnClient = strFileName + '_' + Datetime.now().getTime() + '.xml';
+      //"S" = Doc is in SF
+      //"E" = Doc is external
+      cv.ContentLocation = 'S';
+
+      //NOT NEEDED - leave blank
+      //cv.ContentDocumentId = idDocContenent;
+      
+      //Set payload
+      cv.VersionData = Blob.valueOf(strXML);
+      insert cv;
+
+      //Step 2 - create & insert a [ContentDocumentLink]
+      ContentDocumentLink cdl = new ContentDocumentLink();
+      //we need to query the DB to get the inserts [ContentVersion]
+      cdl.ContentDocumentId = [SELECT Id
+                                      ,ContentDocumentId 
+                               FROM   ContentVersion 
+                               WHERE  Id =:cv.Id].ContentDocumentId;
+      //set link Record
+      cdl.LinkedEntityId = idRecord;
+      cdl.Visibility = 'AllUsers';
+      //"I" = Inferred permission (checkout description of ContentDocumentLink object for more details)
+      cdl.ShareType = 'I';
+      insert cdl;               
+    }
+    
+    /**
+      Creates an XML compliant String
+    */
+    public static void createXMLString()
+    {
+        XmlStreamWriter w = new XmlStreamWriter();
+        //w.writeStartDocument(null, '1.0');
+
+        //Header info 
+        w.writeStartElement('', 'rule', '');
+        w.writeAttribute(null, null, 'name', 'some Name');
+
+        //Description
+        w.writeStartElement(null, 'description', null);
+        w.writeCharacters('some Description');
+        w.writeEndElement();
+
+        //Example - wrapped up in CDATA tag
+        w.writeStartElement(null, 'example', null);
+        w.writeCData('some text that needs to be CDATA compliant');
+        w.writeEndElement();
+
+        //End XML elements
+        w.writeEndElement(); 
+        w.writeEndDocument();
+
+        String str = w.getXmlString();
+        w.close();    
+    }
 }
