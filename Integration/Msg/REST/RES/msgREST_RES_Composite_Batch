@@ -1,0 +1,17 @@
+public with sharing class msgREST_RES_Composite_Batch 
+{
+    public Boolean hasErrors;
+    public List<REST_RES_COMP_Result> results;
+
+    public msgREST_RES_Composite_Batch(Boolean hasErrors, List<Object> results) 
+    {
+        this.hasErrors = hasErrors;
+
+        //for each element in the list, create a GenericRequest object
+        for(Object objGeneric : results)
+        {
+            REST_RES_COMP_Result objResCompResult = new REST_RES_COMP_Result(objGeneric, strMethod, strURL);
+            batchRequests.add(objGenricReq);    
+        }
+    }
+}
