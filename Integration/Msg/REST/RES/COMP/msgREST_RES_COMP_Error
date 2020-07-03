@@ -1,0 +1,13 @@
+public class msgREST_RES_COMP_Error 
+{
+    public String errorCode;
+    public String message;
+    public List<Object> fields;
+
+    public msgREST_RES_COMP_Error(String errorCode, String message)//, List<Object> fields) 
+    {
+        this.errorCode =  errorCode;
+        this.message = message;
+        //this.fields = fields.clone();
+    }
+}
