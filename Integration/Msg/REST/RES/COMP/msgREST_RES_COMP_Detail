@@ -1,0 +1,13 @@
+public class msgREST_RES_COMP_Detail 
+{
+    public String id;
+    public Boolean success;
+    public List<Object> errors;
+
+    public msgREST_RES_COMP_Detail(String id, Boolean success, List<Object> errors) 
+    {
+        this.id =  id;
+        this.success = success;
+        this.errors = errors.clone();
+    }
+}
