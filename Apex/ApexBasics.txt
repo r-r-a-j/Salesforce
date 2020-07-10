@@ -132,6 +132,9 @@ public class ApexBasics
     // Return a set that contains all of the keys in the map
     Set<Integer> s = m.keySet();       
    
+    //Create Map from SELECT
+    Map<ID, Contact> myMap = new Map<ID, Contact>([SELECT Id, LastName FROM Contact]);
+    
     /**
      * CONSIDERATIONS:
      * 1) A map key can hold the null value.
