@@ -1,90 +1,71 @@
 <!--
 	http://alexander-brett.co.uk/2014/08/19/Javascript-for-SFDC-Deployments.html
-
 	DESCRIPTION	: Script to interact with Salesfroce Orgs using the MetaData API.
 				  To use, simply call 'ant run' and follow the on screen instructions.				  	
 	AUTHOR		: Ravi Raj
 	HISTORY		#		DATE		AUTHOR			DESCTIPTION
+				2		03/03/2021	Ravi Raj		Removed Javascript/Nashorn script calls(deprecated). Added in ant-contrib.jar
+													Library calls instead (for control/IF statements) 
 				1		21/11/2018	Ravi Raj		Initial version
-
 -->
 <project name="SFDCMetaDataAPI" default="test" basedir="." xmlns:sf="antlib:com.salesforce" xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+	<!-- Ensure ~ant/lib/ant-contrib.jar is present -->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath> <pathelement location="../ant-contrib.jar"/> </classpath>
+	</taskdef>
+
+	<!-- Ensure ~ant/lib/ant-salesforce.jar (MetaData API) is present -->
     <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
-        <classpath>
-            <pathelement location="../ant-salesforce.jar" />        	
-        </classpath>
+        <classpath> <pathelement location="../ant-salesforce.jar" /> </classpath>
     </taskdef>
 
     <property file="build.properties"/>
-    <property name="userName" value="NULL"/>
-    <property name="password" value="NULL"/>
-    <property name="URL" value="NULL"/>
+
 	<property name="sessionId" value="10"/>
+	<property name="foo" value="fighters"/>
 	<condition property="sf.maxPoll" value="10"> <not> <isset property="sf.maxPoll"/> </not> </condition>
 
     <!--
     	Public entry point
     -->
     <target name="run">
-    	<input message=">>>>>>>>>>>> Debug mode?: " addproperty="_debug" validargs="y,n" defaultvalue="y"/>  
+
+		<input message=">>>>>>>>>>>> Debug mode?: " addproperty="_debug" validargs="y,n" defaultvalue="y"/>  
 		<input message=">>>>>>>>>>>> What do you want to do?: " addproperty="_action" validargs="ret,changeset,deploy"  defaultvalue="ret"/>    
-    	<input message=">>>>>>>>>>>> Which Source Environment: " addproperty="_environment" validargs="olsdemo,b"  defaultvalue="olsdemo"/>
-        <getCredentials/>
- 		<input message=">>>>>>>>>>>> Enter Folder Name (note: *not* full Dir path): " addproperty="_dir"/>
+    	<input message=">>>>>>>>>>>> Which Source Environment: " addproperty="_environment" validargs="gimsb"  defaultvalue="gimsb"/>
 
-  		<script language="javascript"> 
-	    <![CDATA[
+        <setUsername name="${_environment}.un"/>
+		<setPassword name="${_environment}.pwd"/>
+		<setURL name="${_environment}.URL"/>
 
-    	if(project.getProperty("_debug") == "y") 
-    	{
-			var echo = SFDCMetaDataAPI.createTask("echo");
-        	echo.setMessage(">>>>>>>>>>>> You want to [[" + project.getProperty("_action") + "]]");
-        	echo.perform();
-			echo.setMessage(">>>>>>>>>>>> From instance [[" + project.getProperty("_environment") + " / " + project.getProperty("URL") + "]]");
-            echo.perform();
-            echo.setMessage(">>>>>>>>>>>> Using these credentials [[" + project.getProperty("userName") + " / " + project.getProperty("password") + "]]");
-            echo.perform();
-            echo.setMessage(">>>>>>>>>>>> And place into Folder [[" + project.getProperty("_dir") + "]]");
-            echo.perform();       
-		}
-	
-	    ]]> 
-		</script>
-
+        <input message=">>>>>>>>>>>> Enter Folder Name (note: *not* full Dir path): " addproperty="_dir"/>
+        <if> <equals arg1="${_debug}" arg2="y" />
+			<then>
+				<echo message=">>>>>>>>>>>> You want to [[${_action}]]" />
+				<echo message=">>>>>>>>>>>> From instance [[${_environment} / [[${url}]]" />
+				<echo message=">>>>>>>>>>>> Using these credentials [[${userName} / ${password}]]" />
+				<echo message=">>>>>>>>>>>> And place into Folder [[${_dir}]]" />
+			</then>
+		</if>
 		<input message=">>>>>>>>>>>> Proceed? " addproperty="_proceed" validargs="y,n" defaultvalue="y"/>
 
- 		<script language="javascript"> 
-	    <![CDATA[
+        <if> <equals arg1="${_proceed}" arg2="y" />
+			<then>
+				<switch value="${_action}">
+				  <case value="ret"> 		<antcall target="Retrieve"/> 		</case>
+				  <case value="changeset"> 	<antcall target="retChangeSet"/>	</case>
+				  <case value="deploy"> 	<antcall target="Deploy"/>			</case>
+				  <default> 				<antcall target="throwException"/> 	</default>
+				</switch>
+			</then>
+		</if>
+    </target> 
 
-	    if (project.getProperty("_proceed") === "y")
-	    {
-	    	switch (project.getProperty("_action")) 
-	    	{
-			    case "ret":
-			        self.project.executeTarget("Retrieve");
-			        break;
-			    case "changeset":
-			        self.project.executeTarget("retChangeSet");
-			        break;
-		    	case "deploy":
-			        self.project.executeTarget("Deploy");
-			        break;
-			    default:
-			    	break;
-			} 
-		}
-		else
-      	{
-			fail = project.createTask("fail");
-            fail.setMessage("Please try again!");
-            fail.execute();
-      	}
-	
-	    ]]> 
-		</script>
+	<target name="RetrieveX">
+		<antcall target="debug"/> 
     </target>
- 
+
 	<target name="Retrieve">
 
 		<mkdir dir="${_dir}"/>
@@ -94,7 +75,7 @@
 		-->
       	<sf:retrieve 	username="${userName}" 
 						password="${password}"  
-						serverurl="${URL}" 
+						serverurl="${url}" 
 						maxPoll="${sf.maxPoll}" 
 						retrieveTarget="${_dir}" 
 						unpackaged="package.xml"/>
@@ -103,11 +84,12 @@
     <target name="retChangeSet">
 
 		<input message=">>>>>>>>>>>> Change Set Name?: " addproperty="_changeSetName"/>
+		<mkdir dir="${_dir}"/>
 
       	<!-- Retrieve the contents into another directory -->
       	<sf:retrieve 	username="${userName}" 
 						password="${password}" 
-						serverurl="${URL}" 
+						serverurl="${url}" 
 						maxPoll="${sf.maxPoll}" 
 						retrieveTarget="${_dir}" 
 						packageNames="${_changeSetName}"/>
@@ -117,37 +99,79 @@
     	
     	<sf:deploy 	username="${userName}" 
 					password="${password}" 
-					serverurl="${URL}" 
+					serverurl="${url}" 
 					maxPoll="${sf.maxPoll}" 
 					deployRoot="${_dir}" 
 					rollbackOnError="true"/>
      </target>
-    <!--
-    	Gets & assigns credentials from the Build.properties file
-    -->
-    <scriptdef name="getCredentials" language="javascript">
-    	<![CDATA[
-    	//get User Input for Environment selection
-    	var env = project.getProperty("_environment");
 
-    	//Get build.properties variables
-    	un = project.getProperty(env + ".un");
-    	pwd = project.getProperty(env + ".pwd");
-    	url = project.getProperty(env + ".URL");
+	<macrodef name="setUsername">
+		<attribute name="name"/>
+		<sequential>
+			<property name="userName" value="${@{name}}" />
+		</sequential>
+	</macrodef>
 
-    	if (un && pwd && url)
-    	{
-    		//successfully retreived, so assign to local variables
-	      	project.setProperty("userName", un);
-	      	project.setProperty("password", pwd);
-	      	project.setProperty("URL", url);
-      	}
-      	else
-      	{
-			fail = SFDCMetaDataAPI.createTask("fail");
-            fail.setMessage("Failed to retreive the specified environment (" + env + ") credntials from the build.properties file");
-            fail.execute();
-      	}
-      	]]>
-    </scriptdef>
+	<macrodef name="setPassword">
+		<attribute name="name"/>
+		<sequential>
+			<property name="password" value="${@{name}}" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="setURL">
+		<attribute name="name"/>
+		<sequential>
+			<property name="url" value="${@{name}}" />
+		</sequential>
+	</macrodef>
+
+	<target name="debug">		
+  		<echo message="${userName}" />
+		<echo message="${password}" />
+		<echo message="${url}" /> 
+	</target>
+
+	<!-- @Depricated -->
+	<target name="getCredentials">
+		<setUsername name="${_environment}.un"/>
+		<setPassword name="${_environment}.pwd"/>
+		<setURL name="${_environment}.URL"/>
+		
+  		<echo message="${userName}" />
+		<echo message="${password}" />
+		<echo message="${url}" /> 
+
+		<!-- TODO : These variable will default to ${...} values if it can't retrieve anything
+					So an error will never be thrown.-->
+		<if> 	<equals arg1="${userName}" arg2="" />
+			<then>
+				<antcall target="throwException"/>
+			</then>
+			<elseif> <equals arg1="${pwd}" arg2="" />
+			<then>
+				<antcall target="throwException"/>
+			</then>
+			</elseif>
+			<elseif> <equals arg1="${url}" arg2="" />
+			<then>
+				<antcall target="throwException"/>
+			</then>
+			</elseif>
+		</if>
+    </target>
+
+	<target name="throwException">
+		<echo message="************ ERROR ************" /> 
+    </target>
+
+	<!-- @Depricated -->
+	 <macrodef name="setToken">
+	  <attribute name="loc"/>
+	  <attribute name="box"/>
+	  <sequential>
+	    <property name="token" value="${@{loc}.@{box}.server}" />
+	  </sequential>
+	</macrodef>
+
 </project>
