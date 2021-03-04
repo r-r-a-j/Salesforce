@@ -4,6 +4,7 @@
     <!-- [ApexClass] = Apex Class --> 
     <!-- [ApexTrigger] = Trigger Class --> 
     <!-- [CustomObject] = Custom Object (& Custom MetaData Types)  -->  
+    <!-- [LightningComponentBundle] = LWC Components  -->
     <!-- [CustomMetadata] = Custom MetaData Types Records  -->      
     <!-- [FlexiPage] = Represents the metadata associated with a Lightning page.  --> 
     <!-- [CustomApplication] = CustomApplication represents a custom or standard application.  -->     
