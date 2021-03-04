@@ -34,13 +34,7 @@
         <name>ApexTrigger</name>  
     </types>  
     <types>
-        <members>Code_Analysis__c</members> 
-        <members>Duplication__c</members> 
-        <members>Copy_Paste_Scan__c</members>
-        <members>Rule_Set__c</members> 
-        <members>Rule__c</members> 
-        <members>Property__c</members> 
-        <members>PMD_Output__c</members>         
+        <members>*</members>         
         <name>CustomObject</name>  
     </types>     
     <types>
