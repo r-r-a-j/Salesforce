@@ -21,6 +21,7 @@ trigger RuleTrigger on Rule__c (before insert, before update)
             //Header info 
             w.writeStartElement('', 'rule', '');
             w.writeAttribute(null, null, 'name', objRule.Name);
+            w.writeAttribute(null, null, 'language', 'apex');
             w.writeAttribute(null, null, 'message', objRule.Message__c);
             w.writeAttribute(null, null, 'class', objRule.Class__c);
             w.writeAttribute(null, null, 'externalInfoUrl', objRule.External_Info_URL__c);
@@ -32,7 +33,10 @@ trigger RuleTrigger on Rule__c (before insert, before update)
   
             //Priority
             w.writeStartElement(null, 'priority', null);
-            w.writeCharacters('' + objRule.Priority__c);
+            //for some reason, [objRule.Priority__c] is interpretted as a Decimal value, and PMD complains if the Decimal
+            //is in the <Priority> field in the XML. Explicitly remove.
+            String strPriority = '' + objRule.Priority__c;
+            w.writeCharacters('' + strPriority.substringBefore('.'));
             w.writeEndElement();
 
             //Properties - this is a placeholder. It may be removed at a later stage
