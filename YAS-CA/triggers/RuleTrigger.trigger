@@ -33,9 +33,9 @@ trigger RuleTrigger on Rule__c (before insert, before update)
   
             //Priority
             w.writeStartElement(null, 'priority', null);
-            //for some reason, [objRule.Priority__c] is interpretted as a Decimal value, and PMD complains if the Decimal
-            //is in the <Priority> field in the XML. Explicitly remove.
+            //
             String strPriority = '' + objRule.Priority__c;
+
             w.writeCharacters('' + strPriority.substringBefore('.'));
             w.writeEndElement();
 

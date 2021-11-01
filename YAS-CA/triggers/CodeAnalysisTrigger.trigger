@@ -57,6 +57,9 @@ trigger CodeAnalysisTrigger on Code_Analysis__c (after insert)
                     objRule.Priority__c = objMDTRule.Priority__c;
                     objRule.Rule_Set__c = objRuleSet.id;
                 
+                    //TODO
+                    objRule.Type__c = 'Design';
+                    
                     //get all Properties 
                     List<Property_Setting__mdt> lstMDTProperty = [SELECT 	id
                                                                             ,Label
