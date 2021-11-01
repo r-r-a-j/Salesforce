@@ -19,5 +19,4 @@
     <tabs>Duplication__c</tabs>
     <tabs>Property__c</tabs>
     <uiType>Lightning</uiType>
-    <!--utilityBar>Code_Analysis_UtilityBar</utilityBar-->
 </CustomApplication>
