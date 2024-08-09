@@ -1,7 +1,7 @@
 public class ApexBasics 
 {
     /********************************
-     *****	COLLECTIONS - LISTS	*****
+     *****  COLLECTIONS - LISTS	*****
      ********************************/
     
     /**
@@ -50,7 +50,7 @@ public class ApexBasics
     String color2 = lstList3[0];
 
     /********************************
-     *****	COLLECTIONS - SETS	*****
+     *****  COLLECTIONS - SETS	*****
      ********************************/   
 
     /**
@@ -104,7 +104,7 @@ public class ApexBasics
    	 */
 
     /********************************
-     *****	COLLECTIONS - MAPS	*****
+     *****  COLLECTIONS - MAPS	*****
      ********************************/  
 
     /**
@@ -144,7 +144,7 @@ public class ApexBasics
     **/
     
     /************************
-     *****	  LOOPS		*****
+     *****	 LOOPS	*****
      ************************/
 
     for(Integer i = 0; i < lstList1.size(); i++) 
@@ -154,7 +154,7 @@ public class ApexBasics
 	}
 
     /********************************
-     *****	  BUKIFICATION		*****
+     *****	  BUKIFICATION	*****
      ********************************/    
    
     /**
@@ -235,7 +235,7 @@ public class ApexBasics
      */ 
 
     /********************************
-     *****	  		SOQL		*****
+     *****	  SOQL		*****
      ********************************/   
     
     /**
@@ -307,6 +307,34 @@ public class ApexBasics
 	    System.debug('Total Accounts: ' + ar.get('total'));
 	}
 
+	/****************************************************
+	*****  Create random junction object records	*****
+	*****************************************************/
+
+	//PARENT
+	List<Station__c> lstStations = [SELECT Id FROM Station__c LIMIT 100] ;
+	//CHILD
+	List<Product__c> lstProducts = [SELECT Id FROM Product__c LIMIT 100];
+	//JCT OBJ
+	List<Products_At_Station__c> jctProductsAtStations = new List<Products_At_Station__c>();
+	
+	//loop through all PARENTS
+	for (Station__c stnStation : lstStations) 
+	{
+	    //loop through all CHILDREN
+	    for (Product__c prdProduct : lstProducts) 
+	    {
+	        //add the JCT on a coin toss...
+	        If (Math.Random() < 0.5) 
+	        {
+	            Products_At_Station__c productAtStation = new Products_At_Station__c();
+	            productAtStation.Product__c = prdProduct.Id;
+	            productAtStation.Station__c = stnStation.Id;
+	            jctProductsAtStations.add(productAtStation);            
+	        }             
+	    }
+	}
+	insert jctProductsAtStations;
     
 }
 
