@@ -335,6 +335,12 @@ public class ApexBasics
 	    }
 	}
 	insert jctProductsAtStations;
+
+	/********************************************
+	*****  Get Record Types for Object 	*****
+	*********************************************/
+	
+	select Id, Name from RecordType where sObjectType='Case'
     
 }
 
