@@ -1,0 +1,216 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Benefits" : {
+      "title" : "Benefits",
+      "description" : "These are the benefits of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Budget" : {
+      "title" : "Budget",
+      "description" : "This is the budget of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Business_Sector" : {
+      "title" : "Business_Sector",
+      "description" : "This is the business sector of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Core_Features" : {
+      "title" : "Core_Features",
+      "description" : "These are the core features of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Deadline_Reason" : {
+      "title" : "Deadline_Reason",
+      "description" : "This is the deadline reason of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Est_Effort" : {
+      "title" : "Est_Effort",
+      "description" : "This is the estimated effort to implementat the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Margin_Improvement" : {
+      "title" : "Margin_Improvement",
+      "description" : "This is the margin improvement of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Metrics" : {
+      "title" : "Metrics",
+      "description" : "These are the key success metrics of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Pain_Points" : {
+      "title" : "Pain_Points",
+      "description" : "These are the pain points of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Primary_Outcome" : {
+      "title" : "Primary_Outcome",
+      "description" : "Thes are the primary outcomes of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Revenue_Impact" : {
+      "title" : "Revenue_Impact",
+      "description" : "This is the revenue impact of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Summary" : {
+      "title" : "Summary",
+      "description" : "This is a summary of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Target_Audience" : {
+      "title" : "Target_Audience",
+      "description" : "This is the target audience of the User's idea - it will be either 'internal' or 'external'.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Target_Audience_Account_Name" : {
+      "title" : "Target_Audience_Account_Name",
+      "description" : "This is the target audience external account of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Technology" : {
+      "title" : "Technology",
+      "description" : "This is the technology, tool or plaform preference of the User's idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedBenefits" : {
+      "title" : "persistedBenefits",
+      "description" : "These are the benefits of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedBudget" : {
+      "title" : "persistedBudget",
+      "description" : "This is the budget of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedBusiness_Sector" : {
+      "title" : "persistedBusiness_Sector",
+      "description" : "This is the business sector of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedCore_Features" : {
+      "title" : "persistedCore_Features",
+      "description" : "These are the core features of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedDeadline_Reason" : {
+      "title" : "persistedDeadline_Reason",
+      "description" : "This is the deadline reason of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedEst_Effort" : {
+      "title" : "persistedEst_Effort",
+      "description" : "This is the estimated effort to implementat the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedMargin_Improvement" : {
+      "title" : "persistedMargin_Improvement",
+      "description" : "This is the margin improvement of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedMetrics" : {
+      "title" : "persistedMetrics",
+      "description" : "These are the key success metrics of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedPain_Points" : {
+      "title" : "persistedPain_Points",
+      "description" : "These are the paint points of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedPrimary_Outcome" : {
+      "title" : "persistedPrimary_Outcome",
+      "description" : "These are the primary outcomes of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedRevenue_Impact" : {
+      "title" : "persistedRevenue_Impact",
+      "description" : "This is the revenue impact of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedSummary" : {
+      "title" : "persistedSummary",
+      "description" : "This is a summary of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedTarget_Audience" : {
+      "title" : "persistedTarget_Audience",
+      "description" : "This is the target audience of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedTarget_Audience_Account_Name" : {
+      "title" : "persistedTarget_Audience_Account_Name",
+      "description" : "This is the target audience external account of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "persistedTechnology" : {
+      "title" : "persistedTechnology",
+      "description" : "This is the technology, tool or plaform preference of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

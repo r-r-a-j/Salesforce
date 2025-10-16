@@ -1,0 +1,147 @@
+{
+  "required" : [ "User_Division", "User_Email", "User_First_Name", "User_Last_Name" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Benefits" : {
+      "title" : "Benefits",
+      "description" : "These are the benefits of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Budget" : {
+      "title" : "Budget",
+      "description" : "This is the budget of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Business_Sector" : {
+      "title" : "Business_Sector",
+      "description" : "This is the business sector of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Core_Features" : {
+      "title" : "Core_Features",
+      "description" : "These are the core features of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Deadline_Reason" : {
+      "title" : "Deadline_Reason",
+      "description" : "This is the deadline reason of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Est_Effort" : {
+      "title" : "Est_Effort",
+      "description" : "This is the estimated effort to implementat the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "External_Account_Name" : {
+      "title" : "External_Account_Name",
+      "description" : "The name of the external account name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "IndividualOrTeam" : {
+      "title" : "IndividualOrTeam",
+      "description" : "Is this Idea being submitted as an \"Individual\" or as a \"Team\"? (only \"Individual\" or \"Team\" are valid answers)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Margin_Improvement" : {
+      "title" : "Margin_Improvement",
+      "description" : "This is the margin improvement of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Metrics" : {
+      "title" : "Metrics",
+      "description" : "These are the key success metrics of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Pain_Points" : {
+      "title" : "Pain_Points",
+      "description" : "These are the paint points of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Primary_Outcome" : {
+      "title" : "Primary_Outcome",
+      "description" : "These are the primary outcomes of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Revenue_Impact" : {
+      "title" : "Revenue_Impact",
+      "description" : "This is the revenue impact of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Summary" : {
+      "title" : "Summary",
+      "description" : "This is a summary of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Target_Audience" : {
+      "title" : "Target_Audience",
+      "description" : "This is the target audience of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Technology" : {
+      "title" : "Technology",
+      "description" : "This is the technology, tool or plaform preference of the User's idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "User_Division" : {
+      "title" : "User_Division",
+      "description" : "Division of User of the Idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "User_Email" : {
+      "title" : "User_Email",
+      "description" : "Email address of the User of the Idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "User_First_Name" : {
+      "title" : "User_First_Name",
+      "description" : "First name of User of the Idea.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "User_Last_Name" : {
+      "title" : "User_Last_Name",
+      "description" : "Last name of User of the Idea",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

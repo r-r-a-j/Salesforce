@@ -1,0 +1,150 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "nextQuestion" : {
+      "title" : "nextQuestion",
+      "description" : "This is the next question to ask the User.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedBenefits" : {
+      "title" : "persistedBenefits",
+      "description" : "These are the benefits of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedBudget" : {
+      "title" : "persistedBudget",
+      "description" : "This is the budget of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedBusiness_Sector" : {
+      "title" : "persistedBusiness_Sector",
+      "description" : "This is the business sector of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedCore_Features" : {
+      "title" : "persistedCore_Features",
+      "description" : "These are the core features of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedDeadline_Reason" : {
+      "title" : "persistedDeadline_Reason",
+      "description" : "This is the deadline reason of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedEst_Effort" : {
+      "title" : "persistedEst_Effort",
+      "description" : "This is the estimated effort to implementat the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedMargin_Improvement" : {
+      "title" : "persistedMargin_Improvement",
+      "description" : "This is the margin improvement of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedMetrics" : {
+      "title" : "persistedMetrics",
+      "description" : "These are the key success metrics of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedPain_Points" : {
+      "title" : "persistedPain_Points",
+      "description" : "These are the paint points of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedPrimary_Outcome" : {
+      "title" : "persistedPrimary_Outcome",
+      "description" : "These are the primary outcomes of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedRevenue_Impact" : {
+      "title" : "persistedRevenue_Impact",
+      "description" : "This is the revenue impact of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedSummary" : {
+      "title" : "persistedSummary",
+      "description" : "This is a summary of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedTarget_Audience" : {
+      "title" : "persistedTarget_Audience",
+      "description" : "This is the target audience of the User's idea (persisted)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedTarget_Audience_Account_Name" : {
+      "title" : "persistedTarget_Audience_Account_Name",
+      "description" : "This is the target audience external account of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "persistedTechnology" : {
+      "title" : "persistedTechnology",
+      "description" : "This is the technology, tool or plaform preference of the User's idea (persisted).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,14 @@
+{
+  "required" : [ "Idea_Id" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Idea_Id" : {
+      "title" : "Idea_Id",
+      "description" : "The ID of the Idea for Status checking",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

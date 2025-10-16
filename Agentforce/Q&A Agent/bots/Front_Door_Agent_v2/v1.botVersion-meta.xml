@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BotVersion xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>v1</fullName>
+    <articleAnswersGPTEnabled>false</articleAnswersGPTEnabled>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>Hi! 
+
+I&apos;m the Catalyst Lab&apos;s AI assistant, here to help capture the details of your idea.  
+
+I&apos;m going to ask you a series of questions that will help the Catalyst Lab quickly and effectively respond to your idea. 
+
+This shouldn&apos;t take more than 5-10 minutes. 
+
+You may not know some of the answers, but please answer to the best of your ability.
+
+I can also check on the status of any previously  submitted Ideas - just ask!</message>
+                <messageIdentifier>766f3c13-52be-40e7-a581-2011739280ef</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>9096f184-a3a5-4b29-9c76-efee9c7dd981</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <stepIdentifier>8c5f1b40-eceb-4f8a-a7ab-541385dcec7e</stepIdentifier>
+            <type>Wait</type>
+        </botSteps>
+        <developerName>Welcome</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Hi! I&apos;m your helpful bot.</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>Sorry, it looks like something has gone wrong.</message>
+                <messageIdentifier>e8967fa0-d095-4163-8e2f-4a0fc79c6ccb</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>46da0306-b61f-4de5-8edb-85a810d59be1</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <stepIdentifier>7637fab9-cd68-434d-a435-c6506055f79b</stepIdentifier>
+            <type>Wait</type>
+        </botSteps>
+        <developerName>Error_Handling</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Unfortunately, a system error occurred. Let us start again.</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>One moment while I connect you to the next available service representative.</message>
+                <messageIdentifier>c359ff62-19b7-4a34-ab61-01b385aeb527</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>d2a3f2c5-3c87-4a05-86ca-4b74e535d7b0</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <conversationSystemMessage>
+                <type>Transfer</type>
+            </conversationSystemMessage>
+            <stepIdentifier>4aebeb04-5cd7-4fdf-85a4-7ac832dfc163</stepIdentifier>
+            <type>SystemMessage</type>
+        </botSteps>
+        <developerName>Transfer_To_Agent</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Transfer To Agent</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <citationsEnabled>false</citationsEnabled>
+    <company>Captia</company>
+    <conversationDefinitionPlanners>
+        <genAiPlannerName>Front_Door_Agent_v2</genAiPlannerName>
+    </conversationDefinitionPlanners>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>Stores the authentication key that&apos;s used to generate the verification code.</description>
+        <developerName>authenticationKey</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>authenticationKey</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>Stores the Salesforce user ID or contact ID.</description>
+        <developerName>customerId</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>customerId</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>Stores the customer ID type, whether it&apos;s a Salesforce user or a contact.</description>
+        <developerName>customerType</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>customerType</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Boolean</dataType>
+        <description>Stores a boolean value that indicates whether the customer code is verified.</description>
+        <developerName>isVerified</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>isVerified</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>These are the benefits of the User&apos;s idea (persisted).</description>
+        <developerName>persistedBenefits</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedBenefits</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the budget of the User&apos;s idea (persisted).</description>
+        <developerName>persistedBudget</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedBudget</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the business sector of the User&apos;s idea (persisted).</description>
+        <developerName>persistedBusiness_Sector</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedBusiness_Sector</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>These are the core features of the User&apos;s idea (persisted).</description>
+        <developerName>persistedCore_Features</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedCore_Features</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the deadline reason of the User&apos;s idea (persisted).</description>
+        <developerName>persistedDeadline_Reason</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedDeadline_Reason</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the estimated effort to implementat the User&apos;s idea (persisted).</description>
+        <developerName>persistedEst_Effort</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedEst_Effort</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the margin improvement of the User&apos;s idea (persisted).</description>
+        <developerName>persistedMargin_Improvement</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedMargin_Improvement</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>These are the key success metrics of the User&apos;s idea (persisted).</description>
+        <developerName>persistedMetrics</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedMetrics</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>These are the paint points of the User&apos;s idea (persisted</description>
+        <developerName>persistedPain_Points</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedPain_Points</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>These are the primary outcomes of the User&apos;s idea (persisted).</description>
+        <developerName>persistedPrimary_Outcome</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedPrimary_Outcome</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the revenue impact of the User&apos;s idea (persisted).</description>
+        <developerName>persistedRevenue_Impact</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedRevenue_Impact</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is a summary of the User&apos;s idea (persisted).</description>
+        <developerName>persistedSummary</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedSummary</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the target audience of the User&apos;s idea (persisted).</description>
+        <developerName>persistedTarget_Audience</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedTarget_Audience</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the technology, tool or plaform preference of the User&apos;s idea (persisted).</description>
+        <developerName>persistedTechnology</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>persistedTechnology</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This is the target audience external account of the User&apos;s idea.</description>
+        <developerName>Target_Audience_Account_Name</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>Target_Audience_Account_Name</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This variable may also be referred to as VerifiedCustomerId</description>
+        <developerName>VerifiedCustomerId</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>VerifiedCustomerId</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <entryDialog>Welcome</entryDialog>
+    <intentDisambiguationEnabled>false</intentDisambiguationEnabled>
+    <intentV3Enabled>false</intentV3Enabled>
+    <knowledgeActionEnabled>false</knowledgeActionEnabled>
+    <knowledgeFallbackEnabled>false</knowledgeFallbackEnabled>
+    <role>Your job is to ask relevant questions of the User around the idea that they have and provide a summary before saving the details of the Idea.</role>
+    <smallTalkEnabled>false</smallTalkEnabled>
+    <stopRecPrompts>false</stopRecPrompts>
+    <stopWelcomePrompts>false</stopWelcomePrompts>
+    <surfacesEnabled>false</surfacesEnabled>
+    <toneType>Casual</toneType>
+</BotVersion>

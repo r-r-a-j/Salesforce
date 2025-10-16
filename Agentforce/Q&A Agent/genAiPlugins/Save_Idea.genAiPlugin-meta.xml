@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canEscalate>false</canEscalate>
+    <description>This topic saves the idea details in salesforce.</description>
+    <developerName>Save_Idea</developerName>
+    <genAiFunctions>
+        <functionName>New_IdeaSubmission_Flow_Agent3</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>Always begin by collecting user&apos;s basic details like name, company, email address, division, team type, location and confirm these details with user.</description>
+        <developerName>instruction_alwaysbegi0</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_alwaysbegi0</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Finally after the user has confirmed their basic details, always use action &apos;Create Idea Record’ to save the Idea details .</description>
+        <developerName>instruction_finallyaft1</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_finallyaft1</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Save Idea</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your role is to first capture the user’s basic details, confirm the basic details and then save idea details in Salesforce.</scope>
+</GenAiPlugin>

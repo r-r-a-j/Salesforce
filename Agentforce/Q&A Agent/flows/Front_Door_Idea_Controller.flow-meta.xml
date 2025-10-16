@@ -1,0 +1,1814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Get Benefits detail from the User for their Idea.</description>
+        <name>Get_Benefits</name>
+        <label>Get Benefits</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What are the benefits and values that will be achieved from implementing your idea?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Core_Features_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Budget details from the User for their Idea.</description>
+        <name>Get_Budget</name>
+        <label>Get Budget</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What’s the expected budget range for the initial phase?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Deadline_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Business Sector details from the User for their Idea.</description>
+        <name>Get_Business_Sector</name>
+        <label>Get Business Sector</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Which business sector best fits? (CPS; CE; Group; Tech Ops; AI&amp;PO, Other)</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Primary_Outcomes_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Core Features detail from the User for their Idea.</description>
+        <name>Get_Core_Features</name>
+        <label>Get Core Features</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What is the core features, functionalities or components of your idea?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Technology_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Deadline details from the User for their Idea.</description>
+        <name>Get_Deadline</name>
+        <label>Get Deadline</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Is there any specific deadlines that this needs to be live by? If so, what is the deadlines and what are the reasons for them?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Estimated_Effort_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Estimated Effort details from the User for their Idea.</description>
+        <name>Get_Estimated_Effort</name>
+        <label>Get Estimated Effort</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What is the estimated revenue impact over the next 12 months? Please provide enough facts, figures and detail as to how you arrived at this answer.</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Get External Target Audience details from the User for their Idea.</description>
+        <name>Get_External_Target_Audience</name>
+        <label>Get External Target Audience</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Who is the initial External client your Idea is aimed at?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Business_Sector_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Margin Improvement details from the User for their Idea.</description>
+        <name>Get_Margin_Improvement</name>
+        <label>Get Margin Improvement</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What is the estimated cost reduction?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Budget_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Metric details from the User for their Idea.</description>
+        <name>Get_Metrics</name>
+        <label>Get Metrics</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What are the key success metrics of your idea?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Target_Audience_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Paint Points from the User for their Idea.</description>
+        <name>Get_Paint_Points</name>
+        <label>Get Paint Points</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What are the pain points, problems or challenges you’re trying to solve?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Benefits_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Primary Outcomes details from the User for their Idea.</description>
+        <name>Get_Primary_Outcomes</name>
+        <label>Get Primary Outcomes</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What are the business outcomes of your idea (Increase Revenue; Reduce Costs; Other)?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Revenue_Impact_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Revenue Impact details from the User for their Idea.</description>
+        <name>Get_Revenue_Impact</name>
+        <label>Get Revenue Impact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>What is the estimated revenue impact over the next 12 months?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Margin_Improvement_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Summary detail from the User for their Idea.</description>
+        <name>Get_Summary</name>
+        <label>Get Summary</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Please provide comprehensive details about your idea.</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decision_2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Target Audience details from the User for their Idea.</description>
+        <name>Get_Target_Audience</name>
+        <label>Get Target Audience</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Is the intended audience of your idea internal or external to Salesforce (Internal, External, Other)?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>If_Target_Audience_is_External</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Get Technology, tool or platform preferences from the User for their Idea.</description>
+        <name>Get_Technology</name>
+        <label>Get Technology</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>nextQuestion</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Do you have any technology, tools or platform preferences for your idea?</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NextQuestionAssigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Metrics_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Target Audience detail of the User&apos;s Idea.</description>
+        <name>Store</name>
+        <label>Store Target Audience</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedTarget_Audience</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Target_Audience</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>If_Target_Audience_is_External</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Benefits detail of the User&apos;s Idea.</description>
+        <name>Store_Benefits</name>
+        <label>Store Benefits</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedBenefits</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Benefits</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Core_Features_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Budget detail of the User&apos;s Idea.</description>
+        <name>Store_Budget</name>
+        <label>Store Budget</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedBudget</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Budget</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Deadline_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Business Sector detail of the User&apos;s Idea.</description>
+        <name>Store_Business_Sector</name>
+        <label>Store Business Sector</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedBusiness_Sector</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Business_Sector</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Primary_Outcomes_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Core Features detail of the User&apos;s Idea.</description>
+        <name>Store_Core_Features</name>
+        <label>Store Core Features</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedCore_Features</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Core_Features</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Technology_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Deadline detail of the User&apos;s Idea.</description>
+        <name>Store_Deadline</name>
+        <label>Store Deadline</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedDeadline_Reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Deadline_Reason</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Estimated_Effort_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Estimated Effort detail of the User&apos;s Idea.</description>
+        <name>Store_Estimated_Effort</name>
+        <label>Store Estimated Effort</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedEst_Effort</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Est_Effort</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Store External Target Audience detail of the User&apos;s Idea.</description>
+        <name>Store_External_Target_Audience</name>
+        <label>Store External Target Audience</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedTarget_Audience_Account_Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Target_Audience_Account_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Business_Sector_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Margin Improvement detail of the User&apos;s Idea.</description>
+        <name>Store_Margin_Improvement</name>
+        <label>Store Margin Improvement</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedMargin_Improvement</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Margin_Improvement</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Budget_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Metric detail of the User&apos;s Idea.</description>
+        <name>Store_Metrics</name>
+        <label>Store Metrics</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedMetrics</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Metrics</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Target_Audience_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Paint Points of the User&apos;s Idea.</description>
+        <name>Store_Pain_Points</name>
+        <label>Store Pain Points</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedPain_Points</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Pain_Points</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Benefits_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Primary Outcomes detail of the User&apos;s Idea.</description>
+        <name>Store_Primary_Outcomes</name>
+        <label>Store Primary Outcomes</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedPrimary_Outcome</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Outcome</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Revenue_Impact_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Revenue Impact detail of the User&apos;s Idea.</description>
+        <name>Store_Revenue_Impact</name>
+        <label>Store Revenue Impact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedRevenue_Impact</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Revenue_Impact</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Margin_Improvement_Provided</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Summary detail of the User&apos;s Idea.</description>
+        <name>Store_Summary</name>
+        <label>Store Summary</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedSummary</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Summary</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decision_2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store Technology, tool or platform preferences answer provided by the User for their Idea.</description>
+        <name>Store_Technology</name>
+        <label>Store Technology</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>persistedTechnology</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Technology</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Metrics_Provided</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <description>Variable to single that no more &apos;Next Questions&apos; should be asked</description>
+        <name>NextQuestionTerminator</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>END</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Checks to see if a Benefits have been provided by the User for their Idea.</description>
+        <name>Benefits_Provided</name>
+        <label>Benefits Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Core_Features_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Core Features Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Benefits_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Benefits</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedBenefits</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Benefits</targetReference>
+            </connector>
+            <label>Ask Benefits Question</label>
+        </rules>
+        <rules>
+            <name>Store_Benefits_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Benefits</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Benefits</targetReference>
+            </connector>
+            <label>Store Benefits Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if Budget has been provided by the User for their Idea.</description>
+        <name>Budget_Provided</name>
+        <label>Budget Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Deadline_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Deadline Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Budget_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Budget</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedBudget</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Budget</targetReference>
+            </connector>
+            <label>Ask Budget Question</label>
+        </rules>
+        <rules>
+            <name>Store_Budget_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Budget</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Budget</targetReference>
+            </connector>
+            <label>Store Budget Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if the Business Sector has been provided by the User for their Idea.</description>
+        <name>Business_Sector_Provided</name>
+        <label>Business Sector Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Primary_Outcomes_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Primary Outcome Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Business_Sector_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Business_Sector</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedBusiness_Sector</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Business_Sector</targetReference>
+            </connector>
+            <label>Ask Business Sector Question</label>
+        </rules>
+        <rules>
+            <name>Store_Business_Sector_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Business_Sector</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Business_Sector</targetReference>
+            </connector>
+            <label>Store Business Sector Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if a Core Features have been provided by the User for their Idea.</description>
+        <name>Core_Features_Provided</name>
+        <label>Core Features Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Technology_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Technology Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Core_Features_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Core_Features</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedCore_Features</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Core_Features</targetReference>
+            </connector>
+            <label>Ask Core Features Question</label>
+        </rules>
+        <rules>
+            <name>Store_Core_Features_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Core_Features</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Core_Features</targetReference>
+            </connector>
+            <label>Store Core Features Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if a Deadline has been provided by the User for their Idea.</description>
+        <name>Deadline_Provided</name>
+        <label>Deadline Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Estimated_Effort_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Estimate Effort Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Deadline_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Deadline_Reason</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedDeadline_Reason</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Deadline</targetReference>
+            </connector>
+            <label>Ask Deadline Question</label>
+        </rules>
+        <rules>
+            <name>Store_Deadline_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Deadline_Reason</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Deadline</targetReference>
+            </connector>
+            <label>Store Deadline Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if Pain Points were provided by the User for their Idea.</description>
+        <name>Decision_2</name>
+        <label>Pain Points Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Benefits_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Benefits Section</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Decision_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Pain_Points</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedPain_Points</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Paint_Points</targetReference>
+            </connector>
+            <label>Ask Pain Points Question</label>
+        </rules>
+        <rules>
+            <name>Store_Paint_Points_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Pain_Points</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Pain_Points</targetReference>
+            </connector>
+            <label>Store Paint Points Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if an Estimated Effort has been provided by the User for their Idea.</description>
+        <name>Estimated_Effort_Provided</name>
+        <label>Estimated Effort Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>END</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Estimated_Effort_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Est_Effort</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedEst_Effort</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Estimated_Effort</targetReference>
+            </connector>
+            <label>Ask Estimated Effort Question</label>
+        </rules>
+        <rules>
+            <name>Store_Estimated_Effort_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Est_Effort</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Estimated_Effort</targetReference>
+            </connector>
+            <label>Store Estimated Effort Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if Target Audience is External.</description>
+        <name>If_Target_Audience_is_External</name>
+        <label>If Target Audience is External</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Business_Sector_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Business Sector Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_External_Target_Audience</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>persistedTarget_Audience</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>external</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Target_Audience_Account_Name</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedTarget_Audience_Account_Name</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_External_Target_Audience</targetReference>
+            </connector>
+            <label>Ask External Target Audience</label>
+        </rules>
+        <rules>
+            <name>Store_External_Target_Audience_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>persistedTarget_Audience</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>external</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Target_Audience_Account_Name</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_External_Target_Audience</targetReference>
+            </connector>
+            <label>Store External Target Audience Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if the Margin Improvement have been provided by the User for their Idea.</description>
+        <name>Margin_Improvement_Provided</name>
+        <label>Margin Improvement Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Budget_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Budget Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Margin_Improvement_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>persistedPrimary_Outcome</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>cost</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Margin_Improvement</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedMargin_Improvement</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Margin_Improvement</targetReference>
+            </connector>
+            <label>Ask Margin Improvement Question</label>
+        </rules>
+        <rules>
+            <name>Store_Margin_Improvement_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>persistedPrimary_Outcome</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>cost</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Margin_Improvement</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Margin_Improvement</targetReference>
+            </connector>
+            <label>Store Margin Improvement Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if Metrics have been provided by the User for their Idea.</description>
+        <name>Metrics_Provided</name>
+        <label>Metrics Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Target_Audience_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Target Audience Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Metric_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Metrics</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedMetrics</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Metrics</targetReference>
+            </connector>
+            <label>Ask Metric Question</label>
+        </rules>
+        <rules>
+            <name>Store_Metric_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Metrics</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Metrics</targetReference>
+            </connector>
+            <label>Store Metric Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if the Primary Outcomes have been provided by the User for their Idea.</description>
+        <name>Primary_Outcomes_Provided</name>
+        <label>Primary Outcomes Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Revenue_Impact_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Revenue Impact Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Primary_Outcomes_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Primary_Outcome</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedPrimary_Outcome</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Primary_Outcomes</targetReference>
+            </connector>
+            <label>Ask Primary Outcomes Question</label>
+        </rules>
+        <rules>
+            <name>Store_Primary_Outcomes_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Primary_Outcome</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Primary_Outcomes</targetReference>
+            </connector>
+            <label>Store Primary Outcomes Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if the Revenue Impact have been provided by the User for their Idea.</description>
+        <name>Revenue_Impact_Provided</name>
+        <label>Revenue Impact Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Margin_Improvement_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Margin Improvement Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Revenue_Impact_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>persistedPrimary_Outcome</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>revenue</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Revenue_Impact</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedRevenue_Impact</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Revenue_Impact</targetReference>
+            </connector>
+            <label>Ask Revenue Impact Question</label>
+        </rules>
+        <rules>
+            <name>Store_Revenue_Impact_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>persistedPrimary_Outcome</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>revenue</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Revenue_Impact</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Revenue_Impact</targetReference>
+            </connector>
+            <label>Store Revenue Impact Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if a Summary has been provided by the User for their Idea.</description>
+        <name>Summary_Provided</name>
+        <label>Summary Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Decision_2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Pain Points Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Summary_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Summary</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedSummary</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Summary</targetReference>
+            </connector>
+            <label>Ask Summary Question</label>
+        </rules>
+        <rules>
+            <name>Store_Summary_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Summary</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Summary</targetReference>
+            </connector>
+            <label>Store Summary Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if the Target Audience has been provided by the User for their Idea.</description>
+        <name>Target_Audience_Provided</name>
+        <label>Target Audience Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>If_Target_Audience_is_External</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>External Target Audience</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Target_Audience_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Target_Audience</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedTarget_Audience</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Target_Audience</targetReference>
+            </connector>
+            <label>Ask Target Audience Question</label>
+        </rules>
+        <rules>
+            <name>Store_Target_Audience_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Target_Audience</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store</targetReference>
+            </connector>
+            <label>Store Target Audience Answer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks to see if a Technology, toole or platform preferences have been provided by the User for their Idea.</description>
+        <name>Technology_Provided</name>
+        <label>Technology Provided</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Metrics_Provided</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Metrics Section</defaultConnectorLabel>
+        <rules>
+            <name>Ask_Technology_Question</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Technology</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>persistedTechnology</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NextQuestionAssigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Technology</targetReference>
+            </connector>
+            <label>Ask Technology Question</label>
+        </rules>
+        <rules>
+            <name>Store_Technology_Answer</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Technology</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_Technology</targetReference>
+            </connector>
+            <label>Store Technology Answer</label>
+        </rules>
+    </decisions>
+    <description>This Flow controls of the next question to ask the User about their Idea and stores previous answers.</description>
+    <environments>Default</environments>
+    <interviewLabel>Front Door Idea Controller {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Front Door Idea Controller</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Summary_Provided</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>These are the benefits of the User&apos;s idea.</description>
+        <name>Benefits</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the budget of the User&apos;s idea.</description>
+        <name>Budget</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the business sector of the User&apos;s idea.</description>
+        <name>Business_Sector</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>These are the core features of the User&apos;s idea.</description>
+        <name>Core_Features</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the deadline reason of the User&apos;s idea.</description>
+        <name>Deadline_Reason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the estimated effort to implementat the User&apos;s idea.</description>
+        <name>Est_Effort</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the margin improvement of the User&apos;s idea.</description>
+        <name>Margin_Improvement</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>These are the key success metrics of the User&apos;s idea.</description>
+        <name>Metrics</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the next question to ask the User.</description>
+        <name>nextQuestion</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>END</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Variable to hold if the next question has already been assigned</description>
+        <name>NextQuestionAssigned</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>These are the pain points of the User&apos;s idea.</description>
+        <name>Pain_Points</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>These are the benefits of the User&apos;s idea (persisted)</description>
+        <name>persistedBenefits</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the budget of the User&apos;s idea (persisted).</description>
+        <name>persistedBudget</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the business sector of the User&apos;s idea (persisted)</description>
+        <name>persistedBusiness_Sector</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>These are the core features of the User&apos;s idea (persisted)</description>
+        <name>persistedCore_Features</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the deadline reason of the User&apos;s idea (persisted).</description>
+        <name>persistedDeadline_Reason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the estimated effort to implementat the User&apos;s idea (persisted).</description>
+        <name>persistedEst_Effort</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the margin improvement of the User&apos;s idea (persisted).</description>
+        <name>persistedMargin_Improvement</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>These are the key success metrics of the User&apos;s idea (persisted)</description>
+        <name>persistedMetrics</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>These are the paint points of the User&apos;s idea (persisted)</description>
+        <name>persistedPain_Points</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>These are the primary outcomes of the User&apos;s idea (persisted).</description>
+        <name>persistedPrimary_Outcome</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the revenue impact of the User&apos;s idea (persisted)</description>
+        <name>persistedRevenue_Impact</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is a summary of the User&apos;s idea (persisted)</description>
+        <name>persistedSummary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the target audience of the User&apos;s idea (persisted)</description>
+        <name>persistedTarget_Audience</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the target audience external account of the User&apos;s idea (persisted).</description>
+        <name>persistedTarget_Audience_Account_Name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>This is the technology, tool or plaform preference of the User&apos;s idea (persisted).</description>
+        <name>persistedTechnology</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Thes are the primary outcomes of the User&apos;s idea.</description>
+        <name>Primary_Outcome</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the revenue impact of the User&apos;s idea.</description>
+        <name>Revenue_Impact</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is a summary of the User&apos;s idea</description>
+        <name>Summary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the target audience of the User&apos;s idea - it will be either &apos;internal&apos; or &apos;external&apos;.</description>
+        <name>Target_Audience</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>This is the target audience external account of the User&apos;s idea.</description>
+        <name>Target_Audience_Account_Name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>This is the technology, tool or plaform preference of the User&apos;s idea.</description>
+        <name>Technology</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+</Flow>
