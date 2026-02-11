@@ -181,7 +181,7 @@ public with sharing class JSONUtils
         }      
 
         //now save the extracted values from the JSON payload response to the Object structure based on the field names
-
+        objLevel1.saveExtractedFields(lstExtractedFields);
 
         //return serialized JSON payload response based on the Object structure        
         retOut.strJSON = JSON.serialize(objLevel1);
