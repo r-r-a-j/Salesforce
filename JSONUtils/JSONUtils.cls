@@ -174,7 +174,8 @@ public with sharing class JSONUtils
                     //create an object to hold the field name and its corresponding value from the JSON payload response and add it to the list of extracted fields
                     KeyValuePair kvp = new KeyValuePair();
                     kvp.Key = strField;
-                    kvp.Value = String.valueOf(parser.nextToken());
+                    parser.nextToken();
+                    kvp.Value = String.valueOf(parser.getText());
                     lstExtractedFields.add(kvp);
                 }
             }
