@@ -60,4 +60,59 @@ public with sharing class ObjectLevel1 implements JSONInterface
             }
         }
     }
+
+    /*
+    *************************************************************************************************************
+    @Method Name    : getHeader
+    @author         : Ravi Raj
+    @description    : Returns a comma seperated list of this Class's variable(s).
+    @return         : [String] A comma seperated list of this Class's variable(s).
+    *************************************************************************************************************
+    */
+    public String getHeader()
+    {
+        // 1. Serialize using pretty print to force null variables to be included
+        String jsonPayload = JSON.serializePretty(this);
+
+        // 2. Parse the JSON string into an untyped Map structure
+        // This converts the JSON keys straight into map keys
+        Map<String, Object> untypedMap = (Map<String, Object>) JSON.deserializeUntyped(jsonPayload);
+        
+        // 3. Extract the keys and convert the Set into a List for formatting
+        List<String> variableNames = new List<String>(untypedMap.keySet());
+        
+        // 4. Join the list items into a single, clean comma-separated string
+        return String.join(variableNames, ', ');
+    }
+
+    /*
+    *************************************************************************************************************
+    @Method Name    : getHeader
+    @author         : Ravi Raj
+    @description    : Returns a comma seperated list of this Class's variable(s).
+    @return         : [String] A comma seperated list of this Class's variable(s).
+    *************************************************************************************************************
+    */
+    public String getOffer()
+    {
+        String strOfferValues = '';
+
+        // 1. Serialize using pretty print to force null variables to be included
+        String jsonPayload = JSON.serializePretty(this);
+
+        // 2. Parse the JSON string into an untyped Map structure
+        // This converts the JSON keys straight into map keys
+        Map<String, Object> untypedMap = (Map<String, Object>) JSON.deserializeUntyped(jsonPayload);
+        
+        // 3. Extract the keys and convert the Set into a List for formatting
+        //List<String> variableNames = new List<String>(untypedMap.keySet());
+        
+        for (String name : untypedMap.keySet()) 
+        {
+            strOfferValues += ', ' + String.valueOf(untypedMap.get(name));
+        }
+
+        // 4. Join the list items into a single, clean comma-separated string
+        return strOfferValues;
+    }
 }
