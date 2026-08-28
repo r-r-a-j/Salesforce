@@ -24,9 +24,9 @@ public interface JSONInterface
     *************************************************************************************************************
     @Method Name    : saveExtractedFields
     @description    : Saves the extracted fields from a JSON payload response to an object.
-    @param          : [lstKeyValuePairs]  - List of [KeyValuePair] objects containing extracted field values
-    @param          : [obj]             - The object to save the extracted fields to
+    @param          : [mpKeyValuePairs]  - Map of containing extracted field values
+    @param          : [obj]              - The object to save the extracted fields to
     *************************************************************************************************************
     */
-    void saveExtractedFields(List<KeyValuePair> lstKeyValuePairs);
+    void saveExtractedFields(Map<String, String> mpKeyValuePairs);
 }
