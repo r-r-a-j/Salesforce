@@ -1,0 +1,84 @@
+@isTest
+private class JSONUtils_Test 
+{
+
+    Private static final String JSON_PAYLOAD = '{ "contractDuration": "12", "gasDetail": {   "customerType": "New",   "discount": -9,   "planType": "Standard",   "estimated": {"carbonTax": 0.0125132,"oUnitRate": 11.17,"standing": 131.69,"unitRate": 10.17   } }, "homeCareDetail": [], "id": "a0pSh000000f6izIAA", "isPaperlessRequired": true, "isRewardsRequired": false, "isSmartOffer": false, "isFeatured": false, "bundle": null, "discountDuration": "12", "endDate": "2100-12-31T08:00:00.000Z", "estimatedAnnualBill": 1388, "freeBoilerService": false, "freeHive": false, "fuelType": "Single Fuel", "isDirectDebitRequired": true, "isElectricVehicle": false, "isGprnRequired": true, "isGreen": false, "isIntervalOffer": false, "isLevelPayRequired": false, "isMprnRequired": false, "isOpenOffer": false, "isNightStorage": false, "name": "Arcadian Gas Discount", "offerCode": "May26ArcNewGasOnly", "offerType": "Energy Only", "startDate": "2026-05-20T10:00:00.000Z", "tescoPoints": "0", "typeOfTimeOfUse": null, "isExport": false, "isAvailableWithExport": false, "isAvailableWithExportVariable": false, "isAvailableWithExportFixed": false, "isAssociatedPartnerOffer": false, "isFixed": false, "isFreeBoilerService": false}';
+    /**
+    @TestSetup
+    static void setup()
+    { }
+    */
+
+    // Checks handling of an empty JSON payload
+    @isTest
+    static void test_01_EmptyString() 
+    {
+        List<string> lstFieldsToExtract = new List<string>();
+        Map<String, String> mpRet = JSONUtils.getExtractionFieldsFromJSON('',lstFieldsToExtract);
+        System.assertEquals(0, mpRet.size());
+    }
+
+    // Checks handling of an empty JSON payload
+    @isTest
+    static void test_02_EmptyJson() 
+    {
+        List<string> lstFieldsToExtract = new List<string>();
+        Map<String, String> mpRet = JSONUtils.getExtractionFieldsFromJSON('{}',lstFieldsToExtract);
+        System.assertEquals(0, mpRet.size());
+    }
+
+    // Checks handling of an empty extraction list
+    @isTest
+    static void test_03_EmptyExtractionList() 
+    {
+        List<string> lstFieldsToExtract = new List<string>();
+        Map<String, String> mpRet = JSONUtils.getExtractionFieldsFromJSON(JSON_PAYLOAD, lstFieldsToExtract);
+
+        System.assertEquals(0, mpRet.size());
+    }
+
+    // Checks handling of an single entry in the extraction list
+    @isTest
+    static void test_04_SingleEntryExtraction() 
+    {
+        List<string> lstFieldsToExtract = new List<string>{'name'};
+        Map<String, String> mpRet = JSONUtils.getExtractionFieldsFromJSON(JSON_PAYLOAD, lstFieldsToExtract);
+        
+        System.assertEquals(1, mpRet.size());
+         
+        System.assertEquals('Arcadian Gas Discount', mpRet.get('name'));
+    }
+
+    // Checks handling of a few entry in the extraction list
+    @isTest
+    static void test_05_FewEntryExtraction() 
+    {
+        List<string> lstFieldsToExtract = new List<string>{'name', 'id', 'offerType'};
+        Map<String, String> mpRet = JSONUtils.getExtractionFieldsFromJSON(JSON_PAYLOAD, lstFieldsToExtract);
+       
+        System.assertEquals(3, mpRet.size());
+       
+        System.assertEquals('Arcadian Gas Discount' , mpRet.get('name'));      
+        System.assertEquals('a0pSh000000f6izIAA'    , mpRet.get('id'));          
+        System.assertEquals('Energy Only'           , mpRet.get('offerType'));
+    }
+
+    // Checks handling of an multi entry from the local object's extraction list
+    @isTest
+    static void test_06_CheckLocalObjectExtraction() 
+    {
+        INT_Offers objOffer = new INT_Offers();
+        List<string> lstFieldsToExtract = objOffer.getExtractionFields();
+        Map<String, String> mpRet = JSONUtils.getExtractionFieldsFromJSON(JSON_PAYLOAD, lstFieldsToExtract);
+
+        System.assertEquals(7, mpRet.size());
+
+        System.assertEquals('Arcadian Gas Discount' , mpRet.get('name'));            
+        System.assertEquals('a0pSh000000f6izIAA'    , mpRet.get('id'));          
+        System.assertEquals('Energy Only'           , mpRet.get('offerType'));  
+        System.assertEquals('May26ArcNewGasOnly'    , mpRet.get('offerCode'));
+        System.assertEquals('2026-05-20T10:00:00.000Z', mpRet.get('startDate'));
+        System.assertEquals('2100-12-31T08:00:00.000Z', mpRet.get('endDate')); 
+        System.assertEquals('1388'                  , mpRet.get('estimatedAnnualBill'));
+    }
+}
