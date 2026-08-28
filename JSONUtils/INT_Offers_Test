@@ -1,0 +1,69 @@
+@isTest
+private class INT_Offers_Test 
+{
+    // Check getExtractionFields() method of INT_Offers class
+    @isTest
+    static void POS_01_getExtractionFields() 
+    {
+        INT_Offers objOffer = new INT_Offers();
+        List<string> lstFieldsToExtract = objOffer.getExtractionFields();
+
+        System.assertEquals(7, lstFieldsToExtract.size());
+
+        System.assertEquals('id'        , lstFieldsToExtract.get(0));            
+        System.assertEquals('name'      , lstFieldsToExtract.get(1));          
+        System.assertEquals('offerType' , lstFieldsToExtract.get(2));  
+        System.assertEquals('offerCode' , lstFieldsToExtract.get(3));
+        System.assertEquals('startDate' , lstFieldsToExtract.get(4));
+        System.assertEquals('endDate'   , lstFieldsToExtract.get(5)); 
+        System.assertEquals('estimatedAnnualBill', lstFieldsToExtract.get(6));
+    }
+
+    // Check saveExtractedFields() method of INT_Offers class (single value only)
+    @isTest
+    static void POS_02_Single_saveExtractedFields() 
+    {
+        INT_Offers objOffer = new INT_Offers();
+        Map<String, String> mpKeyValuePairs = new Map<String, String>{'id' => 'a0pSh000000f6izIAA'};
+        objOffer.saveExtractedFields(mpKeyValuePairs);
+
+        String strJSON = JSON.serialize(objOffer);
+
+        System.assertEquals(strJSON, '{"Type":null,"OfferType":null,"OfferStart":null,"OfferEnd":null,"OfferCode":null,"Name":null,"Id":"a0pSh000000f6izIAA","EstimatedBill":null}');
+    }
+
+    // Check saveExtractedFields() method of INT_Offers class (few values only)
+    @isTest
+    static void POS_03_Few_saveExtractedFields() 
+    {
+        INT_Offers objOffer = new INT_Offers();
+        Map<String, String> mpKeyValuePairs = new Map<String, String>{'id'                  => 'a0pSh000000f6izIAA'
+                                                                     ,'offerCode'           => 'May26ArcNewGasOnly'
+                                                                     ,'estimatedAnnualBill' => '1388'};
+        objOffer.saveExtractedFields(mpKeyValuePairs);
+
+        String strJSON = JSON.serialize(objOffer);
+
+        System.assertEquals(strJSON, '{"Type":null,"OfferType":null,"OfferStart":null,"OfferEnd":null,"OfferCode":"May26ArcNewGasOnly","Name":null,"Id":"a0pSh000000f6izIAA","EstimatedBill":"1388"}');
+    }
+
+    // Check saveExtractedFields() method of INT_Offers class (complete set of values)
+    @isTest
+    static void POS_03_Complete_saveExtractedFields() 
+    {
+        //public void saveExtractedFields(Map<String, String> mpKeyValuePairs) 
+        INT_Offers objOffer = new INT_Offers();
+        Map<String, String> mpKeyValuePairs = new Map<String, String>{'id'        => 'a0pSh000000f6izIAA'
+                                                                     ,'name'      => 'Arcadian Gas Discount'
+                                                                     ,'offerType' => 'Energy Only'
+                                                                     ,'offerCode' => 'May26ArcNewGasOnly'
+                                                                     ,'startDate' => '2026-05-20T10:00:00.000Z'
+                                                                     ,'endDate'   => '2100-12-31T08:00:00.000Z'
+                                                                     ,'estimatedAnnualBill' => '1388'};
+        objOffer.saveExtractedFields(mpKeyValuePairs);
+        String strJSON = JSON.serialize(objOffer);
+
+        System.assertEquals(strJSON, '{"Type":null,"OfferType":"Energy Only","OfferStart":"2026-05-20","OfferEnd":"2100-12-31","OfferCode":"May26ArcNewGasOnly","Name":"Arcadian Gas Discount","Id":"a0pSh000000f6izIAA","EstimatedBill":"1388"}');
+    }
+
+}
