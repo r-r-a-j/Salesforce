@@ -1,0 +1,67 @@
+/*
+******************************************************************************************************************
+Apex Class Name     : INT_Offers
+Created Date        : 20 Aug 9 2026
+@description        : Object to hold Offers details
+@author             : Ravi Raj
+Modification Log    :
+Ver   Date         Author           Modification
+1.0   20-08-2026   Ravi Raj         Initial Version
+******************************************************************************************************************
+*/
+public with sharing class INT_Offers implements JSONInterface
+{
+    private String Type { get; set; }
+    private String Id { get; set; }
+    private String Name { get; set; }
+    private String OfferType { get; set; }
+    private String OfferCode { get; set; }
+    private Date OfferStart { get; set; }
+    private Date OfferEnd { get; set; }
+    private String EstimatedBill { get; set; }
+
+    public INT_Offers() {}
+
+    /*
+    *************************************************************************************************************
+    @Method Name    : getExtractionFields
+    @author         : Ravi Raj
+    @description    : Returns a list of [string] that need to be extracted from the JSON payload response 
+    @return         : [List<string>]      - List of extraction [string] that need to be extracted.
+    *************************************************************************************************************
+    */
+    public List<string> getExtractionFields()
+    {
+        return new List<string>{'id', 'name', 'offerType', 'offerCode', 'startDate', 'endDate', 'estimatedAnnualBill'}; 
+    }
+
+    /*
+    *************************************************************************************************************
+    @Method Name    : saveExtractedFields
+    @author         : Ravi Raj
+    @description    : Saves the extracted fields from the JSON payload into the corresponding class variables.
+    @param          : [mpKeyValuePairs]- Map of Key/Value pairs
+    @return         : [void]           - No return value
+    *************************************************************************************************************
+    */
+    public void saveExtractedFields(Map<String, String> mpKeyValuePairs) 
+    {
+
+        for (String strKey : mpKeyValuePairs.keySet()) 
+        {
+            String strValue = mpKeyValuePairs.get(strKey);
+
+            switch on strKey
+            {
+                when 'id'                   { Id = strValue;}	
+                when 'name'                 { Name = strValue;}	
+                when 'offerType'            { OfferType = strValue;}	
+                when 'offerCode'            { OfferCode = strValue;}	
+             //   when 'startDate'            { OfferStart = Date.valueOf(strValue);}	
+             //   when 'endDate'              { OfferEnd = Date.valueOf(strValue);}	
+                when 'estimatedAnnualBill'  { EstimatedBill = strValue;}	
+                when else { /* Skip unknown keys */ }
+            }
+        }
+    }
+}
